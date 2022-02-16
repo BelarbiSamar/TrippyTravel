@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 /**
  * @Route("/admin-dashboard/hotel")
  */
@@ -52,12 +53,15 @@ class HotelController extends AbstractController
     /**
      * @Route("/new", name="hotel_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager ): Response
     {
+        
         $hotel = new Hotel();
         $form = $this->createForm(HotelType::class, $hotel);
         $form->handleRequest($request);
         
+      
+  
         
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -83,6 +87,8 @@ class HotelController extends AbstractController
         ]);
     }
 
+    
+   
     /**
      * @Route("/{id}/edit", name="hotel_edit", methods={"GET", "POST"})
      */
@@ -115,4 +121,10 @@ class HotelController extends AbstractController
 
         return $this->redirectToRoute('hotel_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    
+
+ 
+
+
 }

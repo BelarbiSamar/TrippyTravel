@@ -3,11 +3,21 @@
 {% block title %}Chambre index{% endblock %}
 
 {% block body %}
-    <h2>Chambre</h2>
+<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+ <div class="col-lg-12 grid-margin stretch-card">
 
-    <table class="table">
-        <thead>
-            <tr>
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">chambre</h4>
+                  <p class="card-description">
+                  <a href="{{ path('chambre_new') }}">Create new</a>
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
                 <th>Id</th>
                 <th>Typechambre</th>
                 <th>Prix</th>
@@ -15,9 +25,9 @@
                  <th>labelle_hotel</th>
                 <th>actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for chambre in chambres %}
+                      </thead>
+                      <tbody>
+                       {% for chambre in chambres %}
             <tr>
                 <td>{{ chambre.id }}</td>
                 <td>{{ chambre.typechambre }}</td>
@@ -29,13 +39,27 @@
                     <a href="{{ path('chambre_edit', {'id': chambre.id}) }}">edit</a>
                 </td>
             </tr>
+            </tr>
+            </tr>
+            
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="7">no records found</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+                    
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-    <a href="{{ path('chambre_new') }}">Create new</a>
+    </div>
+</div>
+            </div>
+    
+  
+    
+    
 {% endblock %}

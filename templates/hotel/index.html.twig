@@ -3,12 +3,21 @@
 {% block title %}Hotel index{% endblock %}
 
 {% block body %}
+<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+ <div class="col-lg-12 grid-margin stretch-card">
 
-    <h2 style="text-align:center;">Hotel </h2><br>
-
-    <table class="table" width="1" height="10"><br>
-        <thead>
-            <tr>
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Hotel</h4>
+                  <p class="card-description">
+                    <a href="{{ path('hotel_new') }}">Create new</a><br>
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table table-striped">q
+                      <thead>
+                        <tr>
                 <th>Id</th>
                 <th>Libelle</th>
                 <th>Localisation</th>
@@ -17,10 +26,9 @@
                 <th>Description_hotel</th>
                 <th>actions</th>
             </tr>
-        </thead>
-        <tbody>
-        
-        {% for hotel in hotels %}
+                      </thead>
+                      <tbody>
+                        {% for hotel in hotels %}
             <tr>
                 <td>{{ hotel.id }}</td>
                 <td>{{ hotel.libelle }}</td>
@@ -40,8 +48,16 @@
                 <td colspan="7">no records found</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+                    
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-    <a href="{{ path('hotel_new') }}">Create new</a><br>
+    </div>
+</div>
+            </div>
+    
 {% endblock %}
