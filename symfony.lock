@@ -1,4 +1,5 @@
 {
+
     "api-platform/core": {
         "version": "2.6",
         "recipe": {
@@ -13,6 +14,7 @@
             "src/Entity/.gitignore"
         ]
     },
+
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -94,6 +96,7 @@
     "egulias/email-validator": {
         "version": "3.1.2"
     },
+
     "fig/link-util": {
         "version": "1.1.2"
     },
@@ -125,6 +128,7 @@
             "./config/routes/fm_elfinder.yaml"
         ]
     },
+
     "jms/metadata": {
         "version": "2.6.1"
     },
@@ -134,18 +138,25 @@
     "knplabs/knp-paginator-bundle": {
         "version": "v5.8.0"
     },
+
+    "mercuryseries/flashy-bundle": {
+        "version": "v3.0.0"
+    },
+
     "jms/metadata": {
         "version": "2.6.1"
     },
     "laminas/laminas-code": {
         "version": "4.5.1"
     },
+
     "monolog/monolog": {
         "version": "1.26.1"
     },
     "myclabs/deep-copy": {
         "version": "1.10.2"
     },
+
     "nelmio/cors-bundle": {
         "version": "2.2",
         "recipe": {
@@ -158,6 +169,7 @@
             "config/packages/nelmio_cors.yaml"
         ]
     },
+
     "nikic/php-parser": {
         "version": "v4.13.2"
     },
@@ -170,21 +182,25 @@
     "php-flasher/flasher": {
         "version": "v0.9.6"
     },
+
     "php-flasher/flasher-sweet-alert": {
         "version": "v0.9.6"
     },
     "php-flasher/flasher-sweet-alert-symfony": {
+
         "version": "v0.9.6"
     },
     "php-flasher/flasher-symfony": {
         "version": "v0.9.6"
     },
+
     "php-flasher/flasher-toastr": {
         "version": "v0.9.6"
     },
     "php-flasher/flasher-toastr-symfony": {
         "version": "v0.9.6"
     },
+
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
     },
@@ -298,9 +314,11 @@
             "./config/packages/sensio_framework_extra.yaml"
         ]
     },
+
     "studio-42/elfinder": {
         "version": "2.1.60"
     },
+
     "symfony/asset": {
         "version": "v4.4.37"
     },
@@ -416,6 +434,7 @@
             "./src/Kernel.php"
         ]
     },
+
     "symfony/google-mailer": {
         "version": "4.4",
         "recipe": {
@@ -425,6 +444,7 @@
             "ref": "f8fd4ddb9b477510f8f4bce2b9c054ab428c0120"
         }
     },
+
     "symfony/http-client": {
         "version": "v4.4.37"
     },
@@ -673,9 +693,11 @@
     "symfony/yaml": {
         "version": "v4.4.37"
     },
+
     "symfonycasts/verify-email-bundle": {
         "version": "v1.8.0"
     },
+
     "theseer/tokenizer": {
         "version": "1.2.1"
     },
@@ -699,8 +721,10 @@
     },
     "webmozart/assert": {
         "version": "1.10.0"
+
     },
     "willdurand/negotiation": {
         "version": "3.1.0"
+
     }
 }

@@ -1,0 +1,47 @@
+{% extends 'baseBO.html.twig' %}
+
+{% block title %}Category list{% endblock %}
+
+{% block body %}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-14 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">Categories</h1>
+                        <div class="col-md-6 ">
+                        <a href="{{ path('category_new') }}"><i class="mdi mdi-plus-circle-outline"></i></a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>
+
+                    <a href="{{ path('category_edit', {'id': category.id}) }}"class="btn btn-outline-info btn-icon-text">
+                        <i class="mdi mdi-lead-pencil"></i></a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

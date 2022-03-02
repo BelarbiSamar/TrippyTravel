@@ -28,12 +28,14 @@
     <link rel="stylesheet" href="{{ asset('front-office/css/style.css') }}">
 
 
+
     <!-- inject:css:back -->
     <link rel="stylesheet" href="{{ asset('back-office/vendors/mdi/css/materialdesignicons.min.css') }}">
 
     
 
     
+
 </head>
 <body>
 
@@ -46,10 +48,11 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
+
                 <li class="nav-item"><a href="{{ path("maisonhotes") }}" class="nav-link">Maison d'hotes</a></li>
                 <li class="nav-item"><a href="{{ path("excursion_index_front") }}" class="nav-link">Excursion</a></li>
                 <li class="nav-item"><a href="{{ path("hotel") }}" class="nav-link">Hotels</a></li>
-                <li class="nav-item"><a href="{{ path("blog") }}" class="nav-link">Blog</a></li>
+                <li class="nav-item active"><a href="{{ path("article_index_front") }}" class="nav-link">Blog</a></li>
                 <li class="nav-item"><a href="{{ path("attraction") }}" class="nav-link">Attraction</a></li>
                 {% if app.user %}
                 <li class="nav-item"><a href="{{ path("reclamation_new") }}" class="nav-link">Reclamation</a></li>
@@ -81,6 +84,7 @@
                     </div>
                 </li>
                 {% endif %}
+
             </ul>
         </div>
     </div>
@@ -90,7 +94,9 @@
 {% block body %}
 {% endblock %}
 
+
 {% block footer %}
+
 <footer class="ftco-footer ftco-bg-dark ftco-section">
     <div class="container">
         <div class="row mb-5">
@@ -153,7 +159,9 @@
         </div>
     </div>
 </footer>
+
 {% endblock %}
+
 
 
 <!-- loader -->
@@ -178,7 +186,9 @@
 <script src="{{ asset('front-office/js/google-map.js') }}"></script>
 <script src="{{ asset('front-office/js/main.js') }}"></script>
 
+
 {{ flasher_render() }}
+
 
 </body>
 </html>
