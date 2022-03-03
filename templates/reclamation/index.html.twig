@@ -13,15 +13,25 @@
                                 <div class="col-md-6">
                                     <h4 class="card-title">Reclamations</h4>
                                 </div>
+                                
                                 <div class="col-md-6 text-right" align="right">
                                         <a class="btn btn-secondary" href="{{ path('type_rec_index') }}"><i
                                                     class="mdi mdi-tune"></i></a>
                                 </div>
+                                
+                                
                                 <p> Liste des reclamations</p>
-                            </div>
+                                <a href="{{ path('reclamation_index_status', {'status': "waiting"}) }}">waiting</a>
+                                <a href="{{ path('reclamation_index_status', {'status': "seen"}) }}">seen</a>
+                                <a href="{{ path('reclamation_index_status', {'status': "in progress"}) }}">in progress</a>
+                                 <a href="{{ path('reclamation_index_status', {'status': "done"}) }}">done</a>
 
+
+
+                            </div>
+                                
                             <div class="table-responsive pt-3">
-                                <table class="table ">
+                                <table class="table ">  
                                     <thead>
                                         <tr>
                                             <th>Id</th>
@@ -30,8 +40,7 @@
                                             <th>Type</th>
                                             <th>Status</th>
                                             <th>CreatedAt</th>
-                                            <th>actions</th>
-                                            
+                                            <th>actions</th>                                            
                                         </tr>
                                     </thead>
                                     <tbody>

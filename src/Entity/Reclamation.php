@@ -51,7 +51,12 @@ class Reclamation
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $status;  
+    private $status;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $seen = false;  
 
 
     public function __construct()
@@ -134,6 +139,18 @@ class Reclamation
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getSeen(): ?bool
+    {
+        return $this->seen;
+    }
+
+    public function setSeen(bool $seen): self
+    {
+        $this->seen = $seen;
 
         return $this;
     }

@@ -26,6 +26,16 @@ class ReclamationController extends AbstractController
     }
 
     /**
+     * @Route("/admin-dashboard/reclamation/{status}", name="reclamation_index_status", methods={"GET"})
+     */
+    public function indexByStatus(ReclamationRepository $reclamationRepository, String $status): Response
+    {
+        return $this->render('reclamation/index.html.twig', [
+            'reclamations' => $reclamationRepository->findBy(['status' => $status]),
+        ]);
+    }
+
+    /**
      * @Route("/trippy/reclamation", name="reclamation_index_client", methods={"GET"})
      */
     public function indexClient(ReclamationRepository $reclamationRepository): Response
@@ -62,8 +72,11 @@ class ReclamationController extends AbstractController
      * @Route("/admin-dashboard/reclamation/{id}", name="reclamation_show", methods={"GET"})
      */
     public function show(Reclamation $reclamation, EntityManagerInterface $entityManager): Response
-    {
-        $reclamation->setStatus("seen");
+    {   
+        if ($reclamation->getSeen() == false) {
+            $reclamation->setStatus("seen");
+        }
+        $reclamation->setSeen("true");
         $entityManager->persist($reclamation);
         $entityManager->flush();
         return $this->render('reclamation/show.html.twig', [
