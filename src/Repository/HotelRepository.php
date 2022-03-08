@@ -47,4 +47,14 @@ class HotelRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findEntitiesBylibelle($libelle){
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT c
+                FROM App\Entity\Hotel c
+                WHERE c.libelle LIKE :libelle'
+            )
+            ->setParameter('libelle', '%'.$libelle.'%')
+            ->getResult();
+    }
 }

@@ -10,48 +10,151 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
+use App\Notifications\NouveauhotelNotification;
+use Symfony\Component\Form\Extension\Core\Type\{TextType,ButtonType,EmailType,HiddenType,PasswordType,TextareaType,SubmitType,NumberType,DateType,MoneyType,BirthdayType};
+require_once 'C:\xampp\htdocs\TrippyTravel\vendor\autoload.php';
 
-/**
- * @Route("/admin-dashboard/hotel")
- */
 class HotelController extends AbstractController
 {
-       /**
-     * @Route("/hotel", name="hotel")
+     
+      /**
+     * @Route("/hotel", name="hotel", methods={"GET","POST"})
      */
-    public function hotel(): Response
-    {
+    public function hotel(Request $request, PaginatorInterface $paginator,HotelRepository $hotelRepository): Response
+    { 
+        $products = $hotelRepository->findAll();
+        $form = $this->createFormBuilder(null)
+            ->add('query', TextType::class)
+            ->add('search', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary'
+                ]
+            ])
+            ->getForm();
+        $form->handleRequest($request);
+    
+        if ($form->isSubmitted() && $form->isValid()) {
+            $re = $request->get('form');
+            $products = $hotelRepository->findBy(
+                ['libelle' => $re['query']]
+            );
+        }
+
+
+        $rep=$this->getDoctrine()->getRepository(Hotel::class);
+        
+        $hotel =$rep-> findAll();
+        $hotel = $paginator->paginate(
+            $hotel, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            3 // Nombre de résultats par page
+        );
+      
         return $this->render('hotel/hotel.html.twig', [
-            'controller_name' => 'HotelController',
+            'hotels' => $hotel,
+            'form' => $form->createView()
+           
+           
         ]);
     }
 
-    
+
+
+
+
 
     /**
      * @Route("/hotel_single", name="hotel_single")
      */
-    public function hotel_single(): Response
+    public function hotel_single(HotelRepository $hotelRepository): Response
     {
         return $this->render('hotel/hotel_single.html.twig', [
+            
+            'hotels' => $hotelRepository->findAll(),
             'controller_name' => 'HotelController',
         ]);
     }
 
     /**
-     * @Route("/", name="hotel_index", methods={"GET"})
+     * @Route("/admin-dashboard/hotel/", name="hotel_index", methods={"GET","POST"})
      */
-    public function index(HotelRepository $hotelRepository): Response
+    public function index(HotelRepository $hotelRepository,Request $request): Response
     {
+        $products = $hotelRepository->findAll();
+        $form = $this->createFormBuilder(null)
+            ->add('query', TextType::class)
+            ->add('search', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary'
+                ]
+            ])
+            ->getForm();
+        $form->handleRequest($request);
+    
+        if ($form->isSubmitted() && $form->isValid()) {
+            $re = $request->get('form');
+            $products = $hotelRepository->findBy(
+                ['libelle' => $re['query']]
+            );
+        }
         return $this->render('hotel/index.html.twig', [
-            'hotels' => $hotelRepository->findAll(),
+            'hotels' => $products,
+            'form' => $form->createView()
+            ]);
 
-        ]);
     }
 
+
+/**
+     * @Route("/listp", name="hotel_listp", methods={"GET"})
+     */
+    public function listp(HotelRepository $hotelRepository)
+    {
+
+
+
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+        
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+       $hotel= $hotelRepository->findAll();
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('hotel/listp.html.twig', [
+            'hotels' => $hotel,
+        ]);
+        
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+        
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (inline view)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => false
+            
+        ]);
+    
+       
+    }
+
+
+
+
+
+
+
+
     /**
-     * @Route("/new", name="hotel_new", methods={"GET", "POST"})
+     * @Route("/admin-dashboard/hotel/new", name="hotel_new", methods={"GET", "POST"})
      */
     public function new(Request $request, EntityManagerInterface $entityManager ): Response
     {
@@ -59,17 +162,14 @@ class HotelController extends AbstractController
         $hotel = new Hotel();
         $form = $this->createForm(HotelType::class, $hotel);
         $form->handleRequest($request);
-        
-      
-  
-        
-
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($hotel);
             $entityManager->flush();
+           
 
             return $this->redirectToRoute('hotel_index', [], Response::HTTP_SEE_OTHER);
         }
+        
 
         return $this->render('hotel/new.html.twig', [
             'hotel' => $hotel,
@@ -78,7 +178,48 @@ class HotelController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="hotel_show", methods={"GET"})
+     * @Route("/hotel/{id}", name="hotel_show_hotel", methods={"GET"})
+     */
+    public function show_hotel(Hotel $hotel): Response
+    {
+        $chambres = $hotel->getChambre();
+        $arr = [];
+        $arr_ch = [];
+        foreach ($chambres as $key => $value) {
+            $arr["typechambre"] = $value->getTypechambre();
+            $arr["prix"] = $value->getPrix();
+            $arr["description_chambre"] = $value->getDescriptionChambre();
+            $arr_ch[] = $arr;
+        }
+       
+        return $this->render('hotel/hotel_single.html.twig', [
+            'hotel' => $hotel,
+            'chambres'=>$arr_ch
+        ]);
+    }
+/**
+   * @Route("/search", name="ajax_search")
+   */
+  public function searchAction(Request $request)
+  {
+      $em = $this->getDoctrine()->getManager();
+      $libelle = $request->get('q');
+      $hotel =$em->getRepository(hotel::class)->findEntitiesBylibelle($libelle);
+      if(!$hotel ) {
+          $result['hotel ']['error'] = "hotel introuvable 🙁 ";
+      } else {
+          $result['hotel '] = $this->getRealEntities($hotel );
+      }
+      return new Response(json_encode($result));
+  }
+  public function getRealEntities($hotel ){
+      foreach ($hotel  as $hotel ){
+          $realEntities[$hotel ->getId()] = [$hotel->getLibelle(),$hotel->getLocalisation(),$hotel->getNbetoile(), $hotel->getNbchdispo(), $hotel->getDescriptionHotel()];
+      }
+      return $realEntities;
+  }
+    /**
+     * @Route("/admin-dashboard/hotel/{id}", name="hotel_show", methods={"GET"})
      */
     public function show(Hotel $hotel): Response
     {
@@ -90,7 +231,7 @@ class HotelController extends AbstractController
     
    
     /**
-     * @Route("/{id}/edit", name="hotel_edit", methods={"GET", "POST"})
+     * @Route("/admin-dashboard/hotel/{id}/edit", name="hotel_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Hotel $hotel, EntityManagerInterface $entityManager): Response
     {
@@ -110,7 +251,7 @@ class HotelController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="hotel_delete", methods={"POST"})
+     * @Route("/admin-dashboard/hotel/{id}", name="hotel_delete", methods={"POST"})
      */
     public function delete(Request $request, Hotel $hotel, EntityManagerInterface $entityManager): Response
     {
@@ -122,7 +263,25 @@ class HotelController extends AbstractController
         return $this->redirectToRoute('hotel_index', [], Response::HTTP_SEE_OTHER);
     }
 
+  
     
+
+    /**
+ * @var NouveauhotelNotification
+ */
+private $notify_creation;
+
+/**
+ * PublicationController constructor.
+ * @param NouveauhotelNotification $notify_creation
+ */
+public function __construct(NouveauhotelNotification $notify_creation)
+{
+    $this->notify_creation = $notify_creation;
+    
+}
+
+
 
  
 

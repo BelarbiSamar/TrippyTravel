@@ -1,6 +1,4 @@
-{% extends 'baseBO.html.twig' %}
 
-{% block title %}Chambre index{% endblock %}
 
 {% block body %}
 <div class="main-panel">
@@ -11,10 +9,7 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">chambre</h4>
-                  <p class="card-description">
-                  <a href={{ path('chambre_new') }} class="btn btn-light">Create new</a>
-                  <a href={{ path('chambre_listp') }} class="btn btn-light" >imprimer</a>
-                  </p>
+               
                   <div class="table-responsive">
                     <table class="table table-striped">
                       <thead>
@@ -24,7 +19,7 @@
                 <th>Prix</th>
                 <th>Description_chambre</th>
                  <th>labelle_hotel</th>
-                <th>actions</th>
+                
             </tr>
                       </thead>
                       <tbody>
@@ -35,10 +30,7 @@
                 <td>{{ chambre.prix }}</td>
                 <td>{{ chambre.descriptionChambre }}</td>
                 <td>{{ chambre.hotel }}</td>
-                <td>
-                    <a href="{{ path('chambre_show', {'id': chambre.id}) }}" class="btn btn-secondary"><img src="https://img.icons8.com/ios-filled/50/000000/visible.png"/></a>
-                    <a href="{{ path('chambre_edit', {'id': chambre.id}) }}" class="btn btn-secondary"><img src="https://img.icons8.com/glyph-neue/50/000000/edit.png"/></a>
-                </td>
+              
             </tr>
             </tr>
             </tr>

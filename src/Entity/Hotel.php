@@ -6,9 +6,12 @@ use App\Repository\HotelRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=HotelRepository::class)
+ * @Vich\Uploadable()
  */
 class Hotel
 {
@@ -31,6 +34,13 @@ class Hotel
 
     /**
      * @ORM\Column(type="integer")
+     * * @Assert\Length(
+     *      min = 1,
+     *      max = 5,
+     *      minMessage = "Your number of stars must be at least {{ limit }} characters long",
+     *      maxMessage = "Your number of stars cannot be longer than {{ limit }} characters",
+     *      allowEmptyString = false
+     * )
      */
     private $nbetoile;
 
@@ -49,6 +59,11 @@ class Hotel
      */
     private $chambre;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Hotelimage::class, mappedBy="hotel", cascade={"persist", "remove"})
+     */
+    private $hotelimage;
+
     public function __toString()
 {
     return $this->getLibelle();
@@ -57,6 +72,7 @@ class Hotel
     public function __construct()
     {
         $this->chambre = new ArrayCollection();
+        $this->hotelimage = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -148,6 +164,36 @@ class Hotel
             // set the owning side to null (unless already changed)
             if ($chambre->getHotel() === $this) {
                 $chambre->setHotel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Hotelimage[]
+     */
+    public function getHotelimage(): Collection
+    {
+        return $this->hotelimage;
+    }
+
+    public function addHotelimage(Hotelimage $hotelimage): self
+    {
+        if (!$this->hotelimage->contains($hotelimage)) {
+            $this->hotelimage[] = $hotelimage;
+            $hotelimage->setHotel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHotelimage(Hotelimage $hotelimage): self
+    {
+        if ($this->hotelimage->removeElement($hotelimage)) {
+            // set the owning side to null (unless already changed)
+            if ($hotelimage->getHotel() === $this) {
+                $hotelimage->setHotel(null);
             }
         }
 

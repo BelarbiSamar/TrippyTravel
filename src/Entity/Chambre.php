@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ChambreRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ChambreRepository::class)
@@ -19,16 +20,25 @@ class Chambre
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message = "champs ne doit pas etre vide")
+     * )
      */
     private $typechambre;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(
+     *      message = "champs ne doit pas etre vide")
+     * )
      */
     private $prix;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message = "champs ne doit pas etre vide")
+     * )
      */
     private $description_chambre;
 

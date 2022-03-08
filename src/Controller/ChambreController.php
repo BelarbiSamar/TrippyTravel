@@ -10,14 +10,64 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
-/**
- * @Route("/admin-dashboard/chambre")
- */
+
 class ChambreController extends AbstractController
 {
     /**
-     * @Route("/", name="chambre_index", methods={"GET"})
+     * @Route("/hotel_single", name="hotel_single")
+     */
+    public function chambre_single(chambreRepository $chambreRepository): Response
+    {
+        return $this->render('hotel/hotel_single.html.twig', [
+            
+            'chambres' => $chambreRepository->findAll(),
+            'controller_name' => 'chambreController',
+        ]);
+    }
+
+/**
+     * @Route("/listp", name="chambre_listp", methods={"GET"})
+     */
+    public function listp(ChambreRepository $chambreRepository)
+    {
+
+
+
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+        
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+       $chambre= $chambreRepository->findAll();
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('chambre/listp.html.twig', [
+            'chambres' => $chambre,
+        ]);
+        
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+        
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (inline view)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => false
+        ]);
+    
+       
+    }
+
+
+
+    /**
+     * @Route("/admin-dashboard/chambre/", name="chambre_index", methods={"GET"})
      */
     public function index(ChambreRepository $chambreRepository): Response
     {
@@ -27,7 +77,7 @@ class ChambreController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="chambre_new", methods={"GET", "POST"})
+     * @Route("/admin-dashboard/chambre/new", name="chambre_new", methods={"GET", "POST"})
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -49,7 +99,7 @@ class ChambreController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="chambre_show", methods={"GET"})
+     * @Route("/admin-dashboard/chambre/{id}", name="chambre_show", methods={"GET"})
      */
     public function show(Chambre $chambre): Response
     {
@@ -59,7 +109,7 @@ class ChambreController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="chambre_edit", methods={"GET", "POST"})
+     * @Route("/admin-dashboard/chambre/{id}/edit", name="chambre_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Chambre $chambre, EntityManagerInterface $entityManager): Response
     {
@@ -79,7 +129,7 @@ class ChambreController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="chambre_delete", methods={"POST"})
+     * @Route("/admin-dashboard/chambre/{id}", name="chambre_delete", methods={"POST"})
      */
     public function delete(Request $request, Chambre $chambre, EntityManagerInterface $entityManager): Response
     {

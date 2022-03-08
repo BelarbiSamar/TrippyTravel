@@ -4,12 +4,15 @@
 
 {% block body %}
 
-    <h2 style="text-align:left;">Create new Hotel</h2>
-    
 
-
+ <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Create new Hotel</h4>
     {{ include('hotel/_form.html.twig') }}
 
     <a href="{{ path('hotel_index') }}">back to list</a>
-  
+   </div>
+              </div>
+            </div>
 {% endblock %}
