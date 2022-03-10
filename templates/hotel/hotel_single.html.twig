@@ -19,51 +19,7 @@
     <section class="ftco-section ftco-degree-bg">
       <div class="container">
         <div class="row">
-        	<div class="col-lg-3 sidebar">
-        		<div class="sidebar-wrap bg-light ftco-animate">
-        			<h3 class="heading mb-4">Find City</h3>
-        			<form action="#">
-        				<div class="fields">
-		              <div class="form-group">
-		                <input type="text" class="form-control" placeholder="Destination, City">
-		              </div>
-		              <div class="form-group">
-		                <div class="select-wrap one-third">
-	                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-	                    <select name="" id="" class="form-control" placeholder="Keyword search">
-	                      <option value="">Select Location</option>
-	                      <option value="">San Francisco USA</option>
-	                      <option value="">Berlin Germany</option>
-	                      <option value="">Lodon United Kingdom</option>
-	                      <option value="">Paris Italy</option>
-	                    </select>
-	                  </div>
-		              </div>
-		              <div class="form-group">
-		                <input type="text" id="checkin_date" class="form-control" placeholder="Date from">
-		              </div>
-		              <div class="form-group">
-		                <input type="text" id="checkin_date" class="form-control" placeholder="Date to">
-		              </div>
-		              <div class="form-group">
-		              	<div class="range-slider">
-		              		<span>
-										    <input type="number" value="25000" min="0" max="120000"/>	-
-										    <input type="number" value="50000" min="0" max="120000"/>
-										  </span>
-										  <input value="1000" min="0" max="120000" step="500" type="range"/>
-										  <input value="50000" min="0" max="120000" step="500" type="range"/>
-										  </svg>
-										</div>
-		              </div>
-		              <div class="form-group">
-		                <input type="submit" value="Search" class="btn btn-primary py-3 px-5">
-		              </div>
-		            </div>
-	            </form>
-        		</div>
-        		
-          </div>
+        	
           <div class="col-lg-9">
           	<div class="row">
           		<div class="col-md-12 ftco-animate">
@@ -98,11 +54,11 @@
 				    			{% for chambre in chambres %}
 				    			<div class="col-md-4">
 				    				<div class="destination">
-				    					<a href="hotel-single.html" class="img img-2" style="background-image: url(front-office/images/room-6.jpg);"></a>
+				    					<a href="" class="img img-2" style="background-image: url(front-office/images/room-6.jpg);"></a>
 				    					<div class="text p-3">
 				    						<div class="d-flex">
 				    							<div class="one">
-						    						<h3><a href="hotel-single.html">{{chambre.typechambre}}</a></h3>
+						    						<h3><a href="">{{chambre.typechambre}}</a></h3>
 						    						
 					    						</div>
 					    						<div class="two">
@@ -113,7 +69,7 @@
 				    						<hr>
 				    						<p class="bottom-area d-flex">
 				    							
-				    							<span class="ml-auto"><a href="#">Book Now</a></span>
+				    							<span class="ml-auto"><a href="{{path('chambrefront_single', {'id': chambre.id}) }}">Book Now</a></span>
 				    						</p>
 				    					</div>
 				    				</div>
@@ -121,66 +77,7 @@
 								{% endfor %}
           			</div>
           		</div>
-          		<div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
-          			<h4 class="mb-5">Check Availability &amp; Booking</h4>
-          			<div class="fields">
-          				<div class="row">
-          					<div class="col-md-6">
-				              <div class="form-group">
-				                <input type="text" class="form-control" placeholder="Name">
-				              </div>
-			              </div>
-			              <div class="col-md-6">
-				              <div class="form-group">
-				                <input type="text" class="form-control" placeholder="Email">
-				              </div>
-			              </div>
-			              <div class="col-md-6">
-				              <div class="form-group">
-				                <input type="text" id="checkin_date" class="form-control" placeholder="Date from">
-				              </div>
-			              </div>
-			              <div class="col-md-6">
-				              <div class="form-group">
-				                <input type="text" id="checkin_date" class="form-control" placeholder="Date to">
-				              </div>
-				            </div>
-				            <div class="col-md-6">
-					            <div class="form-group">
-				                <div class="select-wrap one-third">
-			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-			                    <select name="" id="" class="form-control" placeholder="Guest">
-			                      <option value="0">Guest</option>
-			                      <option value="1">1</option>
-			                      <option value="2">2</option>
-			                      <option value="3">3</option>
-			                      <option value="4">4</option>
-			                    </select>
-			                  </div>
-				              </div>
-			              </div>
-			              <div class="col-md-6">
-					            <div class="form-group">
-				                <div class="select-wrap one-third">
-			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-			                    <select name="" id="" class="form-control" placeholder="Children">
-			                      <option value="0">Children</option>
-			                      <option value="1">1</option>
-			                      <option value="2">2</option>
-			                      <option value="3">3</option>
-			                      <option value="4">4</option>
-			                    </select>
-			                  </div>
-				              </div>
-			              </div>
-				            <div class="col-md-12">
-				              <div class="form-group">
-				                <input type="submit" value="Check Availability" class="btn btn-primary py-3">
-				              </div>
-			              </div>
-		              </div>
-		            </div>
-          		</div>
+          		
           		
           		
           </div> <!-- .col-md-8 -->

@@ -56,7 +56,7 @@ class NouveauhotelNotification
     public function notify()
     {
 
-        $transport = (new Swift_SmtpTransport('smtp.googlemail.com',456, 'ssl'))
+        $transport = (new Swift_SmtpTransport('smtp.googlemail.com', 465, 'ssl'))
       ->setUsername('trippytravel9@gmail.com')
       ->setPassword('trippy2022');
 
@@ -66,7 +66,7 @@ class NouveauhotelNotification
 
         // On construit le mail
         $message = (new Swift_Message('Consulter votre forum il y a un nouveau hotel !!'))
-      ->setFrom(['trippytravel9@gmail.com' => 'trippytravelwebsite notifier'])
+      ->setFrom(['trippytravel9@gmail.com' => 'Trippywebsite notifier'])
       ->setTo(['iheb.dridi1@esprit.tn'])
    
       ->setBody($body)

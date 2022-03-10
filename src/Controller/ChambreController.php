@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Chambre;
+use App\Entity\Hotelreservation;
 use App\Form\ChambreType;
 use App\Repository\ChambreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,6 +28,33 @@ class ChambreController extends AbstractController
             'chambres' => $chambreRepository->findAll(),
             'controller_name' => 'chambreController',
         ]);
+    }
+
+    /**
+     * @Route("/chambrefront/{id}", name="chambrefront_single" , methods={"GET","POST"})
+     */
+    public function chambre_one(EntityManagerInterface $entityManage,Request $request,Chambre $chambre): Response
+    {
+        $hoteleservation = new Hotelreservation();
+        $form = $this->createFormBuilder(null)
+            ->add('Reserver', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary'
+                ]
+            ])
+            ->getForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $hoteleservation->setPrix($chambre->getPrix());
+            $chambre->addHotelreservation($hoteleservation);
+            $entityManage->flush();
+
+        }
+        return $this->render('chambre/chambre_desc.html.twig', [
+            'chambre' => $chambre,
+            'form' => $form->createView(),
+        ]);
+    
     }
 
 /**

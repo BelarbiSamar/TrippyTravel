@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ChambreRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -47,6 +49,16 @@ class Chambre
      * @ORM\JoinColumn(nullable=false)
      */
     private $hotel;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Hotelreservation::class, mappedBy="chambre", cascade={"persist", "remove"})
+     */
+    private $hotelreservations;
+
+    public function __construct()
+    {
+        $this->hotelreservations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -97,6 +109,36 @@ class Chambre
     public function setHotel(?hotel $hotel): self
     {
         $this->hotel = $hotel;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Hotelreservation[]
+     */
+    public function getHotelreservations(): Collection
+    {
+        return $this->hotelreservations;
+    }
+
+    public function addHotelreservation(Hotelreservation $hotelreservation): self
+    {
+        if (!$this->hotelreservations->contains($hotelreservation)) {
+            $this->hotelreservations[] = $hotelreservation;
+            $hotelreservation->setChambre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHotelreservation(Hotelreservation $hotelreservation): self
+    {
+        if ($this->hotelreservations->removeElement($hotelreservation)) {
+            // set the owning side to null (unless already changed)
+            if ($hotelreservation->getChambre() === $this) {
+                $hotelreservation->setChambre(null);
+            }
+        }
 
         return $this;
     }

@@ -47,6 +47,24 @@ class HotelRepository extends ServiceEntityRepository
         ;
     }
     */
+
+/**
+      * @return hotel[]|NULL Returns an array of hotel objects
+      **/
+
+      public function findByExampleField($value)
+      {
+          $query= $this->createQueryBuilder('r');
+           $query->andWhere(
+                 $query->expr()->like('r.libelle',  ':val')
+            )
+             ->setParameter('val', '%'.$value.'%');
+          return $query->getQuery()->getResult();
+      }
+
+
+
+      
     public function findEntitiesBylibelle($libelle){
         return $this->getEntityManager()
             ->createQuery(
@@ -58,3 +76,4 @@ class HotelRepository extends ServiceEntityRepository
             ->getResult();
     }
 }
+

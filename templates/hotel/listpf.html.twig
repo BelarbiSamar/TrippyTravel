@@ -1,0 +1,38 @@
+
+
+
+{% block body %}
+<div class="col-md-4 ftco-animate">
+		    				<div class="destination">
+							 {{form(form)}}
+							{% for f in hotel.hotelimage %}
+							{% if loop.index == 1 %}
+							
+		    					<a href={{ path('hotel_show_hotel', {'id': hotel.id}) }} class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url({{ vich_uploader_asset(f, 'imageFile')}});">
+		    						<div class="icon d-flex justify-content-center align-items-center">
+									 {% endif %}
+									   {% endfor %}
+    							<span class="icon-search2"></span>
+    						</div>
+		    					</a>
+		    					<div class="text p-3">
+		    						<div class="d-flex">
+		    							<div class="one">
+				    						<h3><a href={{ path('hotel_show_hotel', {'id': hotel.id}) }}>{{ hotel.libelle }}</a></h3>
+				    						<p class={{ hotel.nbetoile }}>
+				    							<span>{{ hotel.nbetoile }}</span>
+				    							<span>stars</span>
+				    						</p>
+			    						</div>
+			    						
+		    						</div>
+		    						<p>{{ hotel.descriptionHotel }}</p>
+		    						<hr>
+		    						<p class="bottom-area d-flex">
+		    							<span><i class="icon-map-o"></i> {{ hotel.localisation }}</span> 
+		    							<span class="ml-auto"><a href="#">Book Now</a></span>
+		    						</p>
+		    					</div>
+		    				</div>
+		    			</div>
+{% endblock %}

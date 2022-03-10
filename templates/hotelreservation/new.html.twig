@@ -1,0 +1,11 @@
+{% extends 'baseBO.html.twig' %}
+
+{% block title %}New Hotelreservation{% endblock %}
+
+{% block body %}
+    <h1>Create new Hotelreservation</h1>
+
+    {{ include('hotelreservation/_form.html.twig') }}
+
+    <a href="{{ path('hotelreservation_index') }}">back to list</a>
+{% endblock %}

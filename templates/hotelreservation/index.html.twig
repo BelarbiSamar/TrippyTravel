@@ -1,0 +1,43 @@
+{% extends 'baseBO.html.twig' %}
+
+{% block title %}Hotelreservation index{% endblock %}
+
+{% block body %}
+    <h1>Hotelreservation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Prix</th>
+                <th>Status</th>
+                <th>Cratedat</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hotelreservation in hotelreservations %}
+            <tr>
+                <td>{{ hotelreservation.id }}</td>
+                <td>{{ hotelreservation.prix }}</td>
+                <td>{{ hotelreservation.status }}</td>
+                <td>{{ hotelreservation.cratedat ? hotelreservation.cratedat|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ hotelreservation.start ? hotelreservation.start|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ hotelreservation.end ? hotelreservation.end|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('hotelreservation_show', {'id': hotelreservation.id}) }}">show</a>
+                    <a href="{{ path('hotelreservation_edit', {'id': hotelreservation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('hotelreservation_new') }}">Create new</a>
+{% endblock %}

@@ -20,6 +20,9 @@ require_once 'C:\xampp\htdocs\TrippyTravel\vendor\autoload.php';
 
 class HotelController extends AbstractController
 {
+
+
+    
      
       /**
      * @Route("/hotel", name="hotel", methods={"GET","POST"})
@@ -43,7 +46,9 @@ class HotelController extends AbstractController
                 ['libelle' => $re['query']]
             );
         }
+        
 
+      
 
         $rep=$this->getDoctrine()->getRepository(Hotel::class);
         
@@ -62,7 +67,20 @@ class HotelController extends AbstractController
         ]);
     }
 
+/**
+ * @var NouveauhotelNotification
+ */
+private $notify_creation;
 
+/**
+ * HotelController constructor.
+ * @param NouveauhotelNotification $notify_creation
+ */
+public function __construct(NouveauhotelNotification $notify_creation)
+{
+    $this->notify_creation = $notify_creation;
+    
+}
 
 
 
@@ -148,7 +166,42 @@ class HotelController extends AbstractController
 
 
 
+/**
+     * @Route("/listpf", name="hotel_listpf", methods={"GET"})
+     */
+    public function listpf(HotelRepository $hotelRepository)
+    {
 
+
+
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+        
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+       $hotel= $hotelRepository->findAll();
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('hotel/listpf.html.twig', [
+            'hotels' => $hotel,
+        ]);
+        
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+        
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (inline view)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => false
+            
+        ]);
+    
+       
+    }
 
 
 
@@ -165,7 +218,8 @@ class HotelController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($hotel);
             $entityManager->flush();
-           
+            $this->notify_creation->notify();
+
 
             return $this->redirectToRoute('hotel_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -178,20 +232,20 @@ class HotelController extends AbstractController
     }
 
     /**
-     * @Route("/hotel/{id}", name="hotel_show_hotel", methods={"GET"})
+     * @Route("/hotel/{id}", name="hotel_show_hotel" , methods={"GET"})
      */
-    public function show_hotel(Hotel $hotel): Response
+    public function show_hotel(Request $request,Hotel $hotel): Response
     {
         $chambres = $hotel->getChambre();
         $arr = [];
         $arr_ch = [];
         foreach ($chambres as $key => $value) {
+            $arr["id"] = $value->getId();
             $arr["typechambre"] = $value->getTypechambre();
             $arr["prix"] = $value->getPrix();
             $arr["description_chambre"] = $value->getDescriptionChambre();
             $arr_ch[] = $arr;
         }
-       
         return $this->render('hotel/hotel_single.html.twig', [
             'hotel' => $hotel,
             'chambres'=>$arr_ch
@@ -210,11 +264,16 @@ class HotelController extends AbstractController
       } else {
           $result['hotel '] = $this->getRealEntities($hotel );
       }
+
       return new Response(json_encode($result));
   }
   public function getRealEntities($hotel ){
       foreach ($hotel  as $hotel ){
-          $realEntities[$hotel ->getId()] = [$hotel->getLibelle(),$hotel->getLocalisation(),$hotel->getNbetoile(), $hotel->getNbchdispo(), $hotel->getDescriptionHotel()];
+          $img="";
+          if ($hotel->getHotelimage()[0]){
+              $img="/uploads/images/hotel/".$hotel->getHotelimage()[0]->getImage();
+          }
+          $realEntities[$hotel ->getId()] = [$hotel->getLibelle(),$hotel->getLocalisation(),$hotel->getNbetoile(), $hotel->getNbchdispo(), $hotel->getDescriptionHotel(),$img,$hotel ->getId()];
       }
       return $realEntities;
   }
@@ -263,23 +322,31 @@ class HotelController extends AbstractController
         return $this->redirectToRoute('hotel_index', [], Response::HTTP_SEE_OTHER);
     }
 
-  
-    
+
+
 
     /**
- * @var NouveauhotelNotification
- */
-private $notify_creation;
+     * @Route("/ajax_searchhotel", name="ajax_searchhotel", methods={"Get"})
+     */
+    public function searchActionhotel(Request $request,HotelRepository $repository)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $libelle = $request->get('q');
+        if($request->get('q')){
+            $hotel =$em->getRepository(Hotel::class)->findEntitiesByLibelle($libelle);
+            if(!$hotel ) {
+                $result['hotel']['error'] = "Hotel introuvable !";
+            } else {
+                $result['hotel'] = $this->getRealEntities($hotel );
+            }
+        }else{
+            $result['hotel'] = $this->getRealEntities($repository->findAll());
+        }
 
-/**
- * PublicationController constructor.
- * @param NouveauhotelNotification $notify_creation
- */
-public function __construct(NouveauhotelNotification $notify_creation)
-{
-    $this->notify_creation = $notify_creation;
-    
-}
+        return new Response(json_encode($result));
+    }
+
+
 
 
 
