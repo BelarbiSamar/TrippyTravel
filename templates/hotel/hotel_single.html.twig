@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!{% endblock %}
+
+{% block body %}
+   <div class="hero-wrap js-fullheight" style="background-image: url({{asset('front-office/images/bg_5.jpg')}});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+          <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span class="mr-2"><a href="hotel.html">Hotel</a></span> <span>Hotel Single</span></p>
+            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Hotels Details</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <section class="ftco-section ftco-degree-bg">
+      <div class="container">
+        <div class="row">
+        	
+          <div class="col-lg-9">
+          	<div class="row">
+          		<div class="col-md-12 ftco-animate">
+          			<div class="single-slider owl-carousel">
+          				{% for f in hotel.hotelimage %}
+                                    <div class="item">
+                                        <div class="hotel-img"
+                                             style="background-image: url({{ vich_uploader_asset(f, 'imageFile') }});"></div>
+                                    </div>
+                                {% endfor %}
+          			</div>
+          		</div>
+          		<div class="col-md-12 hotel-single mt-4 mb-5 ftco-animate">
+          			<span>Our Best hotels &amp; Rooms</span>
+          			<h2>{{ hotel.libelle }}</h2>
+          			<p class="rate mb-5">
+          				<span class="loc"><a href="#"><i class="icon-map"></i>{{ hotel.localisation }}</a></span>
+          				<span class="star">
+    							<p class={{ hotel.nbetoile }}>
+				    							<span>{{ hotel.nbetoile }}</span>
+				    							<span>stars</span>
+				    						</p></span>
+    						</p>
+    						<p>{{ hotel.descriptionHotel }}</p>
+    						
+          		</div>
+          		
+          		<div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
+          			<h4 class="mb-4">Our Rooms</h4>
+          			<div class="row">
+          				
+				    			{% for chambre in chambres %}
+				    			<div class="col-md-4">
+				    				<div class="destination">
+				    					<a href="" class="img img-2" style="background-image: url(front-office/images/room-6.jpg);"></a>
+				    					<div class="text p-3">
+				    						<div class="d-flex">
+				    							<div class="one">
+						    						<h3><a href="">{{chambre.typechambre}}</a></h3>
+						    						
+					    						</div>
+					    						<div class="two">
+					    							<span class="price per-price">${{chambre.prix}}<br><small>/night</small></span>
+				    							</div>
+				    						</div>
+				    						<p>{{chambre.description_chambre}}</p>
+				    						<hr>
+				    						<p class="bottom-area d-flex">
+				    							
+				    							<span class="ml-auto"><a href="{{path('chambrefront_single', {'id': chambre.id}) }}">Book Now</a></span>
+				    						</p>
+				    					</div>
+				    				</div>
+				    			</div>
+								{% endfor %}
+          			</div>
+          		</div>
+          		
+          		
+          		
+          </div> <!-- .col-md-8 -->
+        </div>
+      </div>
+    </section> 
+{% endblock %}

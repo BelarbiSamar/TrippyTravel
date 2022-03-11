@@ -1,6 +1,121 @@
 {% extends 'baseBO.html.twig' %}
 
-{% block title %}Hello AttractionController!{% endblock %}
+{% block title %}Attraction dashboard
+{% endblock %}
 
 {% block body %}
-{% endblock %}
+	<div class="main-panel">
+		<div class="content-wrapper">
+			<br>
+			<div class="row">
+				<div class="grid-margin stretch-card">
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title"></h4>
+							<div class="table-responsive">
+
+								<h2>
+									Rechercher une attraction</h2>
+								<br>
+
+								<div class="sidebar-search">
+									<div class="input-group custom-search-forme">
+										<input type="text" id="search" class="form-control" placeholder="Rechercher une attraction">
+									</div>
+									<!-- /input-group -->
+								</div>
+								<ul class="nav" id="side-menu">
+									<li>
+
+										<ul class="nav nav-second-level" id="entitiesNav"></ul>
+									</li>
+								</ul><br><br>
+
+								<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+								<script type="text/javascript">
+									jQuery(document).ready(function () {
+var searchRequest = null;
+$("#search").keyup(function () {
+var minlength = 3;
+var that = this;
+var value = $(this).val();
+var entitySelector = $("#entitiesNav").html('');
+if (value.length >= minlength) {
+if (searchRequest != null) 
+searchRequest.abort();
+
+searchRequest = $.ajax({
+type: "GET",
+url: "{{ path('ajax_searchA') }}",
+data: {
+'q': value
+},
+dataType: "text",
+success: function (msg) { // we need to check if the value is the same
+if (value == $(that).val()) {
+var result = JSON.parse(msg);
+$.each(result, function (key, arr) {
+$.each(arr, function (id, value) {
+
+if (id != 'error') {
+entitySelector.append('<div><br><div> Libelle:<h1 style="color:grey !important;"class="headline">' + value[0] + '</h1></div> <div>Localisation : <p  style="color:black !important; " class="para para-light py-3">' + value[1] + ' </p></div> <div> Horraire :<p  style="color:black !important;" class="para para-light py-3">' + value[2] + ' </p> </div> <div>Prix :<p  style="color:black !important;" class="para para-light py-3">' + value[3] + ' </p></div></div>');
+} else {
+entitySelector.append('<li style="color:red;">' + value + '</li>');
+}
+s
+
+});
+});
+}
+}
+});
+}
+});
+e
+});
+								</script>
+								<a href="{{ path('attraction_index_id_categorie', {'id_categorie': "1"}) }}" class="btn btn-secondary">loisirs</a>
+								<a href="{{ path('attraction_index_id_categorie', {'id_categorie': "4"}) }}" class="btn btn-secondary">culture</a>
+								<br><br>
+                                <table class="table">
+									<thead>
+										<tr>
+											<th>Id</th>
+											<th>Libelle</th>
+											<th>Localisation</th>
+											<th>Horraire</th>
+											<th>Prix</th>
+											<th>Categorie</th>
+											<th></th>
+
+										</tr>
+									</thead>
+									<tbody>
+										{% for a in attractions %}
+											<tr>
+												<td>{{ a.id }}</td>
+												<td>{{ a.libelle }}</td>
+												<td>{{ a.localisation }}</td>
+												<td>{{ a.horraire }}</td>
+												<td>{{ a.prix }}</td>
+												<td>{{ a.getIdCategorie()}}</td>
+												<td>
+													<a href="{{ path('attraction_show', {'id': a.id}) }}" class="btn btn-secondary"><img src="https://img.icons8.com/ios-filled/50/000000/visible.png"/></a>
+													<a href="{{ path('attraction_edit', {'id': a.id}) }}" class="btn btn-secondary"><img src="https://img.icons8.com/glyph-neue/50/000000/edit.png"/></a>
+												</td>
+											</tr>
+										{% else %}
+											<tr>
+												<td colspan="6">no records found</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a href="{{ path('attraction_new') }}" class="btn btn-secondary">Create new</a>
+			</div>
+		{% endblock %}

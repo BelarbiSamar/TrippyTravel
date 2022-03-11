@@ -36,7 +36,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Assert\notBlank(message="enter your email" )
+     * @Assert\notBlank(message="enter your email")
      * @Groups({"user:read", "user:write"})
      */
     private $email;

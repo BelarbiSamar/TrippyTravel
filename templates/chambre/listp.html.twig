@@ -1,0 +1,58 @@
+
+
+{% block body %}
+<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+ <div class="col-lg-12 grid-margin stretch-card">
+
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">chambre</h4>
+               
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                <th>Id</th>
+                <th>Typechambre</th>
+                <th>Prix</th>
+                <th>Description_chambre</th>
+                 <th>labelle_hotel</th>
+                
+            </tr>
+                      </thead>
+                      <tbody>
+                       {% for chambre in chambres %}
+            <tr>
+                <td>{{ chambre.id }}</td>
+                <td>{{ chambre.typechambre }}</td>
+                <td>{{ chambre.prix }}</td>
+                <td>{{ chambre.descriptionChambre }}</td>
+                <td>{{ chambre.hotel }}</td>
+              
+            </tr>
+            </tr>
+            </tr>
+            
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+                    
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+    </div>
+</div>
+            </div>
+    
+  
+    
+    
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'baseBO.html.twig' %}
+
+{% block title %}AttractionReservation{% endblock %}
+
+{% block body %}
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title"></h4>
+                  <div class="table-responsive">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ attraction_reservation.id }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ attraction_reservation.prix }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ attraction_reservation.status }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ attraction_reservation.createdAt ? attraction_reservation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Start</th>
+                <td>{{ attraction_reservation.start ? attraction_reservation.start|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>End</th>
+                <td>{{ attraction_reservation.end ? attraction_reservation.end|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_attraction_reservation_index') }}" class="btn btn-warning" style="float:right">back to list</a>
+
+{% endblock %}

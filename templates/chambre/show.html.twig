@@ -1,0 +1,35 @@
+{% extends 'baseBO.html.twig' %}
+
+{% block title %}Chambre{% endblock %}
+
+{% block body %}
+    <h1 style="text-align:left;">Chambre</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ chambre.id }}</td>
+            </tr>
+            <tr>
+                <th>Typechambre</th>
+                <td>{{ chambre.typechambre }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ chambre.prix }}</td>
+            </tr>
+            <tr>
+                <th>Description_chambre</th>
+                <td>{{ chambre.descriptionChambre }}</td>
+            </tr>
+        </tbody>
+    </table>
+     <a href={{ path('chambre_index') }} class="btn btn-light" >back to list</a>
+    
+     <a href={{ path('chambre_listp') }} class="btn btn-light" >imprimer</a>
+     <a href={{ path('chambre_edit', {'id': chambre.id}) }} class="btn btn-light" >edit</a>
+  
+
+    {{ include('chambre/_delete_form.html.twig') }}
+{% endblock %}

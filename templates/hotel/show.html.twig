@@ -1,0 +1,49 @@
+{% extends 'baseBO.html.twig' %}
+
+{% block title %}Hotel{% endblock %}
+
+
+
+
+{% block body %}
+
+    <h1 style="text-align:center;">Hotel</h1>
+
+    <table class="table" border='1'>
+    
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ hotel.id }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ hotel.libelle }}</td>
+            </tr>
+            <tr>
+                <th>Localisation</th>
+                <td>{{ hotel.localisation }}</td>
+            </tr>
+            <tr>
+                <th>Nbetoile</th>
+                <td>{{ hotel.nbetoile }}</td>
+            </tr>
+            <tr>
+                <th>Nbchdispo</th>
+                <td>{{ hotel.nbchdispo }}</td>
+            </tr>
+            <tr>
+                <th>Description_hotel</th>
+                <td>{{ hotel.descriptionHotel }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+   
+    <a href={{ path('hotel_index') }} class="btn btn-light" >back to list</a>
+    <a href={{ path('hotel_listp') }} class="btn btn-light" >imprimer</a>
+    <a href={{ path('hotel_edit', {'id': hotel.id}) }} class="btn btn-light" >edit</a>
+    
+
+    {{ include('hotel/_delete_form.html.twig') }}
+{% endblock %}

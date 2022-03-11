@@ -1,0 +1,18 @@
+{% extends 'baseBO.html.twig' %}
+
+{% block title %}New Chambre{% endblock %}
+
+{% block body %}
+ <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Create new Chambre</h4>
+    
+
+    {{ include('chambre/_form.html.twig') }}
+
+    <a href="{{ path('chambre_index') }}">back to list</a>
+      </div>
+              </div>
+            </div>
+{% endblock %}

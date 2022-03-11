@@ -1,7 +1,129 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello HotelController!{% endblock %}
+{% extends 'baseBO.html.twig' %}
+{% block title %}Hotel index{% endblock %}
 
 {% block body %}
 
+<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+ <div class="col-lg-12 grid-margin stretch-card">
+
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Hotel</h4>
+                  <p class="card-description">
+                    <a href={{ path('hotel_new') }} class="btn btn-light">Create new</a>
+                    <a href={{ path('hotel_listp') }} class="btn btn-light" >imprimer</a>
+                 <h2> rechercher un hotel </h2>
+
+        <div class="sidebar-search">
+      <div class="input-group custom-search-form">
+          <input type="text" id="search" class="form-control" placeholder="rechercher">
+      </div>
+      <!-- /input-group -->
+  </div>
+  <ul class="nav" id="side-menu">
+      <li>
+         
+          <ul class="nav nav-second-level" id="entitiesNav">
+          </ul>
+      </li>
+  </ul><br><br><br><br>
+
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        var searchRequest = null;
+        $("#search").keyup(function() {
+            var minlength = 3;
+            var that = this;
+            var value = $(this).val();
+            var entitySelector = $("#entitiesNav").html('');
+            if (value.length >= minlength ) {
+                if (searchRequest != null)
+                    searchRequest.abort();
+                searchRequest = $.ajax({
+                    type: "GET",
+                    url: "{{ path('ajax_search') }}",
+                    data: {
+                        'q' : value
+                    },
+                    dataType: "text",
+                    success: function(msg){
+                        //we need to check if the value is the same
+                        if (value==$(that).val()) {
+                            var result = JSON.parse(msg);
+                            $.each(result, function(key, arr) {
+                                $.each(arr, function(id, value) {
+ 
+                                        if (id != 'error') {   
+                                                 entitySelector.append('<li> Nom:<h1  style="color:grey !important;"class="headline">'+value[0]+'</h1> Categorie : <p  style="color:black !important;" class="para para-light py-3">'+value[1]+' </p> Description :<p  style="color:black !important;" class="para para-light py-3">'+value[2]+' </p> Description :<p  style="color:black !important;" class="para para-light py-3">'+value[3]+' </p> Description :<p  style="color:black !important;" class="para para-light py-3">'+value[4]+'</p> </li>');
+                                        }  
+                                        
+                                        else {
+                                            entitySelector.append('<li style="color:red;">'+value+'</li>');
+                                        }s
+                                    
+                                });
+                            });
+                        }
+                     }
+                });
+            }
+        });
+    });
+</script>
+            
+    
+    
+</script>
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>Localisation</th>
+                <th>Nbetoile</th>
+                <th>Nbchdispo</th>
+                <th>Description_hotel</th>
+                <th>actions</th>
+            </tr>
+                      </thead>
+                      <tbody>
+                        {% for hotel in hotels %}
+            <tr>
+                <td>{{ hotel.id }}</td>
+                <td>{{ hotel.libelle }}</td>
+                <td>{{ hotel.localisation }}</td>
+                <td>{{ hotel.nbetoile }}</td>
+                <td>{{ hotel.nbchdispo }}</td>
+                <td>{{ hotel.descriptionHotel }}</td>
+                
+                <td>
+                    
+                    <a href="{{ path('hotel_show', {'id': hotel.id}) }}" class="btn btn-secondary"><img src="https://img.icons8.com/ios-filled/50/000000/visible.png"/></a>
+                    <a href="{{ path('hotel_edit', {'id': hotel.id}) }}" class="btn btn-secondary"><img src="https://img.icons8.com/glyph-neue/50/000000/edit.png"/></a>
+                </td>
+            </tr>
+            
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+                    
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+    </div>
+</div>
+            </div>
+    
 {% endblock %}

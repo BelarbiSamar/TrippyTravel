@@ -1,0 +1,56 @@
+
+
+
+{% block body %}
+<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+ <div class="col-lg-12 grid-margin stretch-card">
+
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Hotel</h4>
+                
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>Localisation</th>
+                <th>Nbetoile</th>
+                <th>Nbchdispo</th>
+                <th>Description_hotel</th>
+               
+            </tr>
+                      </thead>
+                      <tbody>
+                        {% for hotel in hotels %}
+            <tr>
+                <td>{{ hotel.id }}</td>
+                <td>{{ hotel.libelle }}</td>
+                <td>{{ hotel.localisation }}</td>
+                <td>{{ hotel.nbetoile }}</td>
+                <td>{{ hotel.nbchdispo }}</td>
+                <td>{{ hotel.descriptionHotel }}</td>
+              
+            </tr>
+            
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+                    
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+    </div>
+</div>
+            </div>
+    
+{% endblock %}

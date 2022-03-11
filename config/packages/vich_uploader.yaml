@@ -1,10 +1,24 @@
 vich_uploader:
     db_driver: orm
-
     mappings:
+        attraction_images:
+            uri_prefix: '%app.path.attraction_images%'
+            upload_destination: '%kernel.project_dir%/public%app.path.attraction_images%'
+            namer: 'Vich\UploaderBundle\Naming\UniqidNamer'
+            delete_on_remove: true
+            delete_on_update: true
+
+
         product_images:
             uri_prefix:         '%app.path.product_images%'
             upload_destination: '%kernel.project_dir%/public%app.path.product_images%'
             namer: 'Vich\UploaderBundle\Naming\UniqidNamer'
             delete_on_remove: true
             delete_on_update: true 
+        
+        hotel_images:
+            uri_prefix:         '%app.path.hotel_images%'
+            upload_destination: '%kernel.project_dir%/public%app.path.hotel_images%'
+            namer: 'Vich\UploaderBundle\Naming\UniqidNamer'
+            
+

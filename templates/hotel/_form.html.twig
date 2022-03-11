@@ -1,0 +1,13 @@
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}})}}
+
+    {{ form_widget(form) }}
+<div class="form-group">
+    <a  id="add_documentation" data-prototype-add="div#appbundle_hotel_Hotelimage" class="btn btn-outline-danger btn-icon-text btn-collection-add">
+        <i class="mdi mdi-library-plus"></i>
+    </a>
+</div>
+
+    <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+
+    
+{{ form_end(form) }}

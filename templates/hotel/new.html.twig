@@ -1,0 +1,18 @@
+{% extends 'baseBO.html.twig' %}
+
+{% block title %}New Hotel{% endblock %}
+
+{% block body %}
+
+
+ <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Create new Hotel</h4>
+    {{ include('hotel/_form.html.twig') }}
+
+    <a href="{{ path('hotel_index') }}">back to list</a>
+   </div>
+              </div>
+            </div>
+{% endblock %}

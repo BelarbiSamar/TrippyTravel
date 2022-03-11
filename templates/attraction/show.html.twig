@@ -1,0 +1,54 @@
+{% extends 'baseBO.html.twig' %}
+
+{% block title %}Attraction{% endblock %}
+
+{% block body %}
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title"></h4>
+                  <div class="table-responsive">
+    <table class="table">
+    <div style="float:right">
+        {{ include('attraction/_delete_form.html.twig') }}
+    <div/>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ attraction.id }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ attraction.libelle }}</td>
+            </tr>
+            <tr>
+                <th>Localisation</th>
+                <td>{{ attraction.localisation }}</td>
+            </tr>
+            <tr>
+                <th>Horraire</th>
+                <td>{{ attraction.horraire }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ attraction.prix }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div/>
+    <div/>
+    <div/>
+    <div/>
+    <div/>
+    <div/>
+    <div/>
+    <br> <br>
+    <div>
+        <a href="{{ path('admin-dashboard/attraction') }}" class="btn btn-warning" style="float:right">back to list</a> 
+        <a href="{{ path('attraction_edit', {'id': attraction.id}) }}" class="btn btn-warning">edit</a>
+    <div/>
+    
+{% endblock %}

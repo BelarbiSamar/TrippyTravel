@@ -266,9 +266,16 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ path('admin-dashboard/hotel') }}" class="nav-link" >
+                    <a href="{{ path('hotel_index') }}" class="nav-link" >
                         <i class="menu-icon mdi mdi-floor-plan"></i>
                         <span class="menu-title">Hotels</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('chambre_index') }}" class="nav-link" >
+                        <i class="menu-icon mdi mdi-floor-plan"></i>
+                        <span class="menu-title">Chambre hotel</span>
                         <i class="menu-arrow"></i>
                     </a>
                 </li>
@@ -285,6 +292,13 @@
                         <span class="menu-title">Attractions</span>
                         <i class="menu-arrow"></i>
                     </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="{{ path('admin-dashboard/categorie_attraction') }}" class="nav-link" >
+                        <i class="menu-icon mdi mdi-floor-plan"></i>
+                        <span class="menu-title">categorie attraction</span>
+                        <i class="menu-arrow"></i>
+                    </a>                   
                 </li>
                 <li class="nav-item">
                     <a href="{{ path('admin-dashboard/blog') }}" class="nav-link" >
@@ -305,30 +319,27 @@
         {% block body %}
         {% endblock %}
 
-    </div>
-</div>
+							<!-- plugins:js -->
+		<script src="{{ asset('back-office/vendors/js/vendor.bundle.base.js') }}"></script>
+		<!-- endinject -->
+		<!-- Plugin js for this page -->
+		<script src="{{ asset('back-office/vendors/chart.js/Chart.min.js') }}"></script>
+		<script src="{{ asset('back-office/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+		<script src="{{ asset('back-office/vendors/progressbar.js/progressbar.min.js') }}"></script>
 
-<!-- plugins:js -->
-<script src="{{ asset('back-office/vendors/js/vendor.bundle.base.js') }}"></script>
-<!-- endinject -->
-<!-- Plugin js for this page -->
-<script src="{{ asset('back-office/vendors/chart.js/Chart.min.js') }}"></script>
-<script src="{{ asset('back-office/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
-<script src="{{ asset('back-office/vendors/progressbar.js/progressbar.min.js') }}"></script>
-
-<!-- End plugin js for this page -->
-<!-- inject:js -->
-<script src="{{ asset('back-office/js/off-canvas.js') }}"></script>
-<script src="{{ asset('back-office/js/hoverable-collapse.js') }}"></script>
-<script src="{{ asset('back-office/js/template.js') }}"></script>
-<script src="{{ asset('back-office/js/settings.js') }}"></script>
-<script src="{{ asset('back-office/js/todolist.js') }}"></script>
-<!-- endinject -->
-<!-- Custom js for this page-->
-<script src="{{ asset('back-office/js/dashboard.js') }}"></script>
-<script src="{{ asset('back-office/js/Chart.roundedBarCharts.js') }}"></script>
-<!-- End custom js for this page-->
-</body>
+		<!-- End plugin js for this page -->
+		<!-- inject:js -->
+		<script src="{{ asset('back-office/js/off-canvas.js') }}"></script>
+		<script src="{{ asset('back-office/js/hoverable-collapse.js') }}"></script>
+		<script src="{{ asset('back-office/js/template.js') }}"></script>
+		<script src="{{ asset('back-office/js/settings.js') }}"></script>
+		<script src="{{ asset('back-office/js/todolist.js') }}"></script>
+		<!-- endinject -->
+		<!-- Custom js for this page-->
+		<script src="{{ asset('back-office/js/dashboard.js') }}"></script>
+		<script src="{{ asset('back-office/js/Chart.roundedBarCharts.js') }}"></script>
+		<script src="{{ asset('back-office/js/scriptiheb.js') }}"></script>
+		<!-- End custom js for this page-->
+	</body>
 
 </html>
-

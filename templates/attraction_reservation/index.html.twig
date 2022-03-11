@@ -1,0 +1,48 @@
+{% extends 'baseBO.html.twig' %}
+
+{% block title %}AttractionReservation index{% endblock %}
+
+{% block body %}
+<div class="main-panel">
+        <div class="content-wrapper"> <br>
+          <div class="row">
+            <div class="grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title"></h4>
+                  <div class="table-responsive">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Prix</th>
+                <th>Status</th>
+                <th>CreatedAt</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for attraction_reservation in attraction_reservations %}
+            <tr>
+                <td>{{ attraction_reservation.id }}</td>
+                <td>{{ attraction_reservation.prix }}</td>
+                <td>{{ attraction_reservation.status }}</td>
+                <td>{{ attraction_reservation.createdAt ? attraction_reservation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ attraction_reservation.start ? attraction_reservation.start|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ attraction_reservation.end ? attraction_reservation.end|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_attraction_reservation_show', {'id': attraction_reservation.id}) }}" class="btn btn-secondary"><img src="https://img.icons8.com/ios-filled/50/000000/visible.png"/></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
