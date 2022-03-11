@@ -13,6 +13,7 @@ class BlogController extends AbstractController
      */
     public function index(): Response
     {
+
         return $this->render('blog/index.html.twig', [
             'controller_name' => 'BlogController',
         ]);
@@ -23,8 +24,10 @@ class BlogController extends AbstractController
      */
     public function admin_index(): Response
     {
+
         return $this->render('blog/admin_index.html.twig', [
             'controller_name' => 'BlogController',
         ]);
     }
+
 }

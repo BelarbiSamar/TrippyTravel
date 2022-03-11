@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Excursion;
 use App\Entity\Excursioncategorie;
 use App\Entity\Excursioncomment;
@@ -38,6 +39,7 @@ use Symfony\Component\HttpFoundation\Session;
 use Symfony\Component\Mailer\MailerInterface;
 
 
+
 class ExcursionController extends AbstractController
 {
     private $mailer;
@@ -48,7 +50,7 @@ class ExcursionController extends AbstractController
     }
 
     /**
-     * @Route("admin-dashboard/excursion/", name="excursion_index", methods={"GET"})
+     * @Route("admin-dashboard/excursion/", name="excursion_index", methods={"GET","POST"})
      */
     public function index(Request $request, ExcursionRepository $excursionRepository, ToastrFactory $flasher): Response
     {
@@ -86,10 +88,12 @@ class ExcursionController extends AbstractController
         return $this->render('excursion/new.html.twig', [
             'excursion' => $excursion,
             'form' => $form->createView(),
+
         ]);
     }
 
     /**
+
      * @Route("admin-dashboard/excursion/{id}", name="excursion_show", methods={"GET"})
      */
     public function show(Excursion $excursion): Response
@@ -403,4 +407,5 @@ class ExcursionController extends AbstractController
             'categories' => $categories
         ]);
     }
+
 }

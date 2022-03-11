@@ -5,6 +5,7 @@
 .idea/trippytravel.iml
 composer.lock
 /.env
+
 /.env.local
 /.env.local.php
 /.env.*.local

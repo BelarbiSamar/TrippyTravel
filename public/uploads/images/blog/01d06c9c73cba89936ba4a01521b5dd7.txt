@@ -1,0 +1,226 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Hôte : 127.0.0.1
+-- Généré le : mar. 01 mars 2022 à 16:37
+-- Version du serveur : 10.4.21-MariaDB
+-- Version de PHP : 7.4.23
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données : `trippytravel`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `article`
+--
+
+CREATE TABLE `article` (
+  `id` int(11) NOT NULL,
+  `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `id_category_id` int(11) NOT NULL,
+  `views` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `article`
+--
+
+INSERT INTO `article` (`id`, `title`, `content`, `created_at`, `id_category_id`, `views`) VALUES
+(31, 'best desinations 2022', 'Good Morning, John Doe\r\nYour performance summary this week\r\nSelect Category\r\n02/24/2022\r\nProfile image\r\nSIDEBAR SKINS\r\n\r\nLight\r\nDark\r\nHEADER SKINS\r\n\r\nTO DO LIST\r\nCHATS\r\nAdd To-do\r\nTeam review meeting at 3.00 PM\r\nPrepare for presentation\r\nResolve all the low priority tickets due today\r\nSchedule meeting for next week\r\nProject review\r\nEvents\r\nFeb 11 2018\r\nCreating component page build a js\r\n\r\nThe total number of sessions\r\n\r\nFeb 7 2018\r\nMeeting with Alisa\r\n\r\nCall Sarah Graves\r\n\r\nDashboard\r\nExcursions\r\nHotels\r\nMaison d\'hotes\r\nAttractions\r\nBlog\r\nUtilisateurs\r\nTitle\r\nzdad\r\nContent\r\naaaaaaaaaaaaaaaaaaaaaaaaaaa\r\nId category\r\nfunny', '2022-02-24 20:55:43', 1, 2),
+(32, 'coucou', 'Good Morning, John Doe\r\nYour performance summary this week\r\nSelect Category\r\n02/24/2022\r\nProfile image\r\nSIDEBAR SKINS\r\n\r\nLight\r\nDark\r\nHEADER SKINS\r\n\r\nTO DO LIST\r\nCHATS\r\nAdd To-do\r\nTeam review meeting at 3.00 PM\r\nPrepare for presentation\r\nResolve all the low priority tickets due today\r\nSchedule meeting for next week\r\nProject review\r\nEvents\r\nFeb 11 2018\r\nCreating component page build a js\r\n\r\nThe total number of sessions\r\n\r\nFeb 7 2018\r\nMeeting with Alisa\r\n\r\nCall Sarah Graves\r\n\r\nDashboard\r\nExcursions\r\nHotels\r\nMaison d\'hotes\r\nAttractions\r\nBlog\r\nUtilisateurs\r\nTitle\r\nzdad\r\nContent\r\naaaaaaaaaaaaaaaaaaaaaaaaaaa\r\nId category\r\nfunny', '2022-02-24 20:57:02', 1, 0),
+(33, 'test test', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '2022-02-25 01:14:03', 1, 0),
+(34, 'coucouh', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff', '2022-02-25 03:48:12', 1, 0),
+(35, 'coucouty', 'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu', '2022-02-25 03:52:54', 1, 0),
+(36, 'test testaze', 'azeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeexxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', '2022-02-25 03:53:54', 1, 0),
+(41, 'aaaaaaaaasd', 'asdddddddddddddddddddddxsaaaaaaaaaaaaaaaasxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', '2022-02-25 07:13:24', 5, 0),
+(42, 'let\'s Discover', 'Quisquam esse aliquam fuga distinctio, quidem delectus veritatis reiciendis. Nihil explicabo quod, est eos ipsum. Unde aut non tenetur tempore, nisi culpa voluptate maiores officiis quis vel ab consectetur suscipit veritatis nulla quos quia aspernatur perferendis, libero sint. Error, velit, porro. Deserunt minus, quibusdam iste enim veniam, modi rem maiores.\r\n\r\nOdit voluptatibus, eveniet vel nihil cum ullam dolores laborum, quo velit commodi rerum eum quidem pariatur! Quia fuga iste tenetur, ipsa vel nisi in dolorum consequatur, veritatis porro explicabo soluta commodi libero voluptatem similique id quidem? Blanditiis voluptates aperiam non magni. Reprehenderit nobis odit inventore, quia laboriosam harum excepturi ea.\r\n\r\nAdipisci vero culpa, eius nobis soluta. Dolore, maxime ullam ipsam quidem, dolor distinctio similique asperiores voluptas enim, exercitationem ratione aut adipisci modi quod quibusdam iusto, voluptates beatae iure nemo itaque laborum. Consequuntur et pariatur totam fuga eligendi vero dolorum provident. Voluptatibus, veritatis. Beatae numquam nam ab voluptatibus culpa, tenetur recusandae!\r\n\r\nVoluptas dolores dignissimos dolorum temporibus, autem aliquam ducimus at officia adipisci quasi nemo a perspiciatis provident magni laboriosam repudiandae iure iusto commodi debitis est blanditiis alias laborum sint dolore. Dolores, iure, reprehenderit. Error provident, pariatur cupiditate soluta doloremque aut ratione. Harum voluptates mollitia illo minus praesentium, rerum ipsa debitis, inventore?', '2022-02-25 08:49:47', 6, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `articlimages`
+--
+
+CREATE TABLE `articlimages` (
+  `id` int(11) NOT NULL,
+  `article_id` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `articlimages`
+--
+
+INSERT INTO `articlimages` (`id`, `article_id`, `name`) VALUES
+(22, 31, '7fbe958944a1f630d0f962d4ea2dc318.jpeg'),
+(24, 33, '59ed1b904ae4ee8d9f7a1f21fde6bf78.jpeg'),
+(25, 35, '6028803f9e078633309b41938a4699eb.jpeg'),
+(27, 34, 'ff562a8593fda67cdf992a1ca8a87201.jpeg'),
+(28, 42, '208a6ef3274a6c63e614f7f2f53d06ab.jpeg');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `category`
+--
+
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `category`
+--
+
+INSERT INTO `category` (`id`, `name`) VALUES
+(1, 'funny'),
+(5, 'travel'),
+(6, 'Tips & solutions'),
+(7, 'adventure');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `doctrine_migration_versions`
+--
+
+CREATE TABLE `doctrine_migration_versions` (
+  `version` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
+  `executed_at` datetime DEFAULT NULL,
+  `execution_time` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Déchargement des données de la table `doctrine_migration_versions`
+--
+
+INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
+('DoctrineMigrations\\Version20220213124324', '2022-02-19 15:36:41', 93),
+('DoctrineMigrations\\Version20220214155548', '2022-02-14 17:18:34', 118),
+('DoctrineMigrations\\Version20220214190942', '2022-02-19 15:36:41', 23),
+('DoctrineMigrations\\Version20220214201436', '2022-02-19 15:36:41', 134),
+('DoctrineMigrations\\Version20220214205009', '2022-02-19 15:36:41', 52),
+('DoctrineMigrations\\Version20220214211159', '2022-02-14 22:12:12', 325),
+('DoctrineMigrations\\Version20220214224817', '2022-02-19 15:36:41', 141),
+('DoctrineMigrations\\Version20220214225328', '2022-02-19 15:36:41', 54),
+('DoctrineMigrations\\Version20220215145801', '2022-02-19 15:36:41', 187),
+('DoctrineMigrations\\Version20220215182510', '2022-02-19 15:36:42', 14),
+('DoctrineMigrations\\Version20220215185533', '2022-02-19 15:36:42', 15),
+('DoctrineMigrations\\Version20220216003344', '2022-02-19 15:36:42', 13),
+('DoctrineMigrations\\Version20220216113708', '2022-02-16 12:37:25', 144),
+('DoctrineMigrations\\Version20220216140528', '2022-02-19 15:36:42', 12),
+('DoctrineMigrations\\Version20220216224433', '2022-02-16 23:44:42', 217),
+('DoctrineMigrations\\Version20220221174437', '2022-02-22 21:45:55', 376),
+('DoctrineMigrations\\Version20220221214434', '2022-02-22 21:45:55', 237),
+('DoctrineMigrations\\Version20220222014321', '2022-02-22 21:45:56', 1),
+('DoctrineMigrations\\Version20220222014631', '2022-02-22 21:45:56', 25),
+('DoctrineMigrations\\Version20220222015615', '2022-02-22 21:45:56', 31),
+('DoctrineMigrations\\Version20220222132227', '2022-02-22 14:22:55', 339),
+('DoctrineMigrations\\Version20220222132943', '2022-02-22 14:29:54', 56),
+('DoctrineMigrations\\Version20220222204745', '2022-02-22 21:47:52', 167),
+('DoctrineMigrations\\Version20220222214143', '2022-02-22 22:41:50', 449),
+('DoctrineMigrations\\Version20220222214353', '2022-02-22 22:43:58', 51),
+('DoctrineMigrations\\Version20220222214545', '2022-02-22 22:45:53', 54),
+('DoctrineMigrations\\Version20220222221401', '2022-02-22 23:14:07', 100),
+('DoctrineMigrations\\Version20220222224625', '2022-02-22 23:46:37', 214),
+('DoctrineMigrations\\Version20220222230823', '2022-02-23 00:08:33', 373),
+('DoctrineMigrations\\Version20220223141837', '2022-02-23 15:18:46', 69),
+('DoctrineMigrations\\Version20220223154714', '2022-02-23 16:47:24', 164),
+('DoctrineMigrations\\Version20220223161541', '2022-02-23 17:15:49', 39),
+('DoctrineMigrations\\Version20220223161833', '2022-02-23 17:18:41', 46),
+('DoctrineMigrations\\Version20220223201928', '2022-02-23 21:19:34', 64),
+('DoctrineMigrations\\Version20220223205416', '2022-02-23 21:54:25', 155),
+('DoctrineMigrations\\Version20220224151538', '2022-02-24 16:15:57', 120),
+('DoctrineMigrations\\Version20220224151711', '2022-02-24 16:17:16', 137),
+('DoctrineMigrations\\Version20220224154551', '2022-02-24 16:45:57', 498),
+('DoctrineMigrations\\Version20220224175602', '2022-02-24 18:56:12', 186),
+('DoctrineMigrations\\Version20220228110504', '2022-02-28 12:05:45', 116);
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `article`
+--
+ALTER TABLE `article`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_23A0E66A545015` (`id_category_id`);
+
+--
+-- Index pour la table `articlimages`
+--
+ALTER TABLE `articlimages`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_22A181277294869C` (`article_id`);
+
+--
+-- Index pour la table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `doctrine_migration_versions`
+--
+ALTER TABLE `doctrine_migration_versions`
+  ADD PRIMARY KEY (`version`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `article`
+--
+ALTER TABLE `article`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
+-- AUTO_INCREMENT pour la table `articlimages`
+--
+ALTER TABLE `articlimages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
+--
+-- AUTO_INCREMENT pour la table `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `article`
+--
+ALTER TABLE `article`
+  ADD CONSTRAINT `FK_23A0E66A545015` FOREIGN KEY (`id_category_id`) REFERENCES `category` (`id`);
+
+--
+-- Contraintes pour la table `articlimages`
+--
+ALTER TABLE `articlimages`
+  ADD CONSTRAINT `FK_22A181277294869C` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

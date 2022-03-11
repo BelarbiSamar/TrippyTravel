@@ -1,2 +1,4 @@
-    Excursion
+Blog
+Excursion
 ATTRACTIONS
+
