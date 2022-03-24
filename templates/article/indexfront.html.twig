@@ -44,7 +44,7 @@
                         <div class="blog-entry align-self-stretch">
                             <div class="single-slider owl-carousel">
                                 {% for image in article.images %}
-                            <a href="{{ path('article_show_client',{id: article.id}) }}" class="block-20" style="background-image: url('{{ asset('/uploads/images/blog/'~image.name) }}');">
+                            <a href="{{ path('article_show_client',{id: article.id}) }}" class="block-20" style="background-image: url('{{ asset('/uploads/'~image.name) }}');">
                             </a>
                                 {% endfor %}
                             </div>

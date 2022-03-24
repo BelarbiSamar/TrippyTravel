@@ -47,7 +47,7 @@
                                 <div class="single-slider owl-carousel">
                                     {% for image in article.images %}
                                     <div class="item">
-                                        <div class="hotel-img" style="background-image: url({{ asset('/uploads/images/blog/'~image.name) }}); border-radius: 3%; "></div>
+                                        <div class="hotel-img" style="background-image: url({{ asset('/uploads/'~image.name) }}); border-radius: 3%; "></div>
                                     </div>
                                     {% endfor %}
                                 </div>
