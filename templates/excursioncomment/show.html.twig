@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Excursioncomment{% endblock %}
+
+{% block body %}
+    <h1>Excursioncomment</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ excursioncomment.id }}</td>
+            </tr>
+            <tr>
+                <th>Pseudo</th>
+                <td>{{ excursioncomment.pseudo }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ excursioncomment.email }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ excursioncomment.contenu }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ excursioncomment.actif }}</td>
+            </tr>
+            <tr>
+                <th>Rgpd</th>
+                <td>{{ excursioncomment.rgpd }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ excursioncomment.createdAt ? excursioncomment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_excursioncomment_index') }}">back to list</a>
+
+    <a href="{{ path('app_excursioncomment_edit', {'id': excursioncomment.id}) }}">edit</a>
+
+    {{ include('excursioncomment/_delete_form.html.twig') }}
+{% endblock %}

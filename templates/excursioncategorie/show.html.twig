@@ -1,0 +1,48 @@
+{% extends 'baseBO.html.twig' %}
+
+{% block title %}Excursioncategorie{% endblock %}
+
+{% block body %}
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="card-title">Excursion categorie</h4>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <div class="btn-group">
+                                        <a href="{{ path('excursioncategorie_index') }}"
+                                           class="btn btn-outline-light btn-icon-text"><i
+                                                    class="mdi mdi-arrow-left btn-icon-prepend"></i></a>
+                                        {{ include('excursioncategorie/_delete_form.html.twig') }}
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ excursioncategorie.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Libellé</th>
+                                    <td>{{ excursioncategorie.libelle }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <a class="btn btn-outline-primary btn-icon-text"
+                               href="{{ path('excursioncategorie_edit', {'id': excursioncategorie.id}) }}"><i
+                                        class="mdi mdi-grease-pencil"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_widget(form) }}
+<button class="btn btn-outline-primary btn-icon-text">
+    <i class="{{ icon|default('mdi mdi-content-save') }}"></i>
+</button>
+{{ form_end(form) }}

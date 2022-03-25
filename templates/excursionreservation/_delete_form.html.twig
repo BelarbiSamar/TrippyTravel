@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('excursionreservation_delete', {'id': excursionreservation.id}) }}" >
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ excursionreservation.id) }}">
+    <a type="button"  id="btn-ok"  class=" btn btn-outline-danger btn-icon-text"><i class="mdi mdi-delete"></i></a>
+</form>

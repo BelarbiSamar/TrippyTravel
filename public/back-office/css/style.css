@@ -1,0 +1,19 @@
+#flasher-container-top-right{
+    top: 150px!important;
+}
+.text-right{
+    text-align: right;
+}
+.vich-image img{
+    padding: 0.25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    max-width: 100%;
+    max-height: 100px;
+    height: auto;
+}
+.statusexcursion{
+    padding: 10px;
+    color: white;
+}

@@ -106,6 +106,11 @@ class User implements UserInterface
     private $updatedAt;
 
     /**
+     * @ORM\OneToMany(targetEntity=Excursionreservation::class, mappedBy="user")
+     */
+    private $excursionreservations;
+
+    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $bio;
@@ -136,6 +141,7 @@ class User implements UserInterface
         $this->reclamations = new ArrayCollection();
         $this->sent = new ArrayCollection();
         $this->received = new ArrayCollection();
+        $this->excursionreservations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -324,6 +330,21 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return Collection<int, Excursionreservation>
+     */
+    public function getExcursionreservations(): Collection
+    {
+        return $this->excursionreservations;
+    }
+
+    public function addExcursionreservation(Excursionreservation $excursionreservation): self
+    {
+        if (!$this->excursionreservations->contains($excursionreservation)) {
+            $this->excursionreservations[] = $excursionreservation;
+            $excursionreservation->setUser($this);
+        }
+    }
     public function getBio(): ?string
     {
         return $this->bio;
@@ -336,6 +357,15 @@ class User implements UserInterface
         return $this;
     }
 
+    public function removeExcursionreservation(Excursionreservation $excursionreservation): self
+    {
+        if ($this->excursionreservations->removeElement($excursionreservation)) {
+            // set the owning side to null (unless already changed)
+            if ($excursionreservation->getUser() === $this) {
+                $excursionreservation->setUser(null);
+            }
+        }
+    }
     public function getTelephone(): ?string
     {
         return $this->telephone;

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Excursioncomment{% endblock %}
+
+{% block body %}
+    <h1>Create new Excursioncomment</h1>
+
+    {{ include('excursioncomment/_form.html.twig') }}
+
+    <a href="{{ path('app_excursioncomment_index') }}">back to list</a>
+{% endblock %}

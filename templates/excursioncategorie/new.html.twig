@@ -1,0 +1,33 @@
+{% extends 'baseBO.html.twig' %}
+
+{% block title %}New Excursioncategorie{% endblock %}
+
+{% block body %}
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="card-title">CategorieExcursion</h4>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <a href="{{ path('excursioncategorie_index') }}" class="btn btn-outline-light btn-icon-text"><i
+                                                class="mdi mdi-arrow-left btn-icon-prepend"></i></a>
+                                </div>
+                            </div>
+                            <p class="card-description">
+                                Ajouter
+                            </p>
+
+                            {{ include('excursioncategorie/_form.html.twig') }}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

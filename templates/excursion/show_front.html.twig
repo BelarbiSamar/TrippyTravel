@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Excursion{% endblock %}
+{% block body %}
+    <div class="hero-wrap js-fullheight" style="background-image: url({{ asset('front-office/images/bg_5.jpg') }});">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center"
+                 data-scrollax-parent="true">
+                <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+                    <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span
+                                class="mr-2"><a href="{{ path('excursion_index_front') }}">Acceuil</a></span> <span
+                                class="mr-2"><a href="{{ path('excursion_index_front') }}">Excursions</a></span> <span>Excursion simple</span>
+                    </p>
+                    <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Details
+                        excursion</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="ftco-section ftco-degree-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-md-12 ftco-animate">
+                            <div class="single-slider owl-carousel">
+                                {% for f in excursion.excursionimages %}
+                                    <div class="item">
+                                        <div class="hotel-img"
+                                             style="background-image: url({{ vich_uploader_asset(f, 'imageFile') }});"></div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-md-12 hotel-single mt-4 mb-5 ftco-animate">
+                            <h2>{{ excursion.libelle }} - Commentaires : {{ commentaires|length }}</h2>
+                            {{ excursion.description|raw }}
+
+                        </div>
+                        <div class="col-md-12 hotel-single mt-4 mb-5 ftco-animate">
+                            <h2>Commentaires</h2>
+                            {% for commentaire in commentaires %}
+                                <p>Commentaire écrit par <b>{{ commentaire.pseudo }} le {{ commentaire.createdAt|date }}</b></p>
+                                <p>{{ commentaire.contenu }}</p>
+                                <hr>
+                            {% else %}
+                                <p>Il n'y a pas encore de commentaire, publiez le premier !</p>
+                            {% endfor %}
+                            {{ form_start(formcomment, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                            {{ form_widget(formcomment) }}
+                            {{ form_end(formcomment) }}
+                        </div>
+                        <div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
+                            <h4 class="mb-5">Réservation</h4>
+                            {{ form_start(form) }}
+                            {{ form_widget(form) }}
+                            {{ form_end(form) }}
+                        </div>
+
+                    </div>
+                </div> <!-- .col-md-8 -->
+            </div>
+        </div>
+    </section> <!-- .section -->
+
+
+
+    <div id='map' style='width: 100%; height: 500px;'></div>
+
+{% endblock %}
+{% block scripts %}
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYW1hbmlib3Vzc3NhYSIsImEiOiJjbDBrbXlnNzcwMmpzM2NxbHJyZ2Y4NTVyIn0.1UzFPLw_lScmJL9v28i_eQ';
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            // center: [12.550343, 55.665957],
+            center: [{{ excursion.localisation }}],
+            zoom: 5
+        });
+
+        // Create a default Marker and add it to the map.
+        const marker1 = new mapboxgl.Marker()
+            .setLngLat([{{ excursion.localisation }}])
+            // .setLngLat([12.554729, 55.70651])
+            .addTo(map);
+
+
+    </script>
+{% endblock %}

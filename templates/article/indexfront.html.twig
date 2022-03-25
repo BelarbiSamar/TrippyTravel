@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Trippy Blog{% endblock %}
+
+{% block body %}
+
+
+    <div class="hero-wrap js-fullheight" style="background-image: url('{{ asset('front-office/images/bg_4.jpg') }}');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+                <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+                    <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="">Home</a></span> <span>Blog</span></p>
+                    <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Tips &amp; Articles</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="ftco-section ftco-degree-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 sidebar">
+                    <div class="sidebar-wrap bg-light ftco-animate">
+                        <h2 style="text-align: center">Find Article</h2>
+                        <div class="fields">
+                        {{ form_start(form) }}
+                            {{ form_row(form.q) }}
+                            </br></br>
+                            <h5>Categories</h5>
+                            {{ form_row(form.categories) }}
+                            <div class="form-group">
+                                <input type="submit" value="Search" class="btn btn-primary py-3 px-5">
+                            </div>
+                        {{ form_end(form) }}
+                        </div>
+                </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row">
+                {% for article in articles %}
+                    <div class="col-md-4 ftco-animate">
+                        <div class="blog-entry align-self-stretch">
+                            <div class="single-slider owl-carousel">
+                                {% for image in article.images %}
+                            <a href="{{ path('article_show_client',{id: article.id}) }}" class="block-20" style="background-image: url('{{ asset('/uploads/'~image.name) }}');">
+                            </a>
+                                {% endfor %}
+                            </div>
+
+                            <div class="text p-4 d-block">
+
+                                    <span class="tag">{{ article.getIdCategory() }}</span>
+                                <h3 class="heading mt-3"><a href="{{ path('article_show_client',{id: article.id}) }}">{{ article.title }}</a></h3>
+
+                                <div class="meta mb-3">
+                                    <div><a href="{{ path('article_show_client',{id: article.id}) }}">{{ article.CreatedAt ? article.CreatedAt|date('Y-m-d') : '' }}</a></div>
+                                    <div><a href="{{ path('article_show_client',{id: article.id}) }}">Admin</a></div></br>
+                                    <div><a href="{{ path('article_show_client',{id: article.id}) }}" class="icon-eye"> {{ article.views }}</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col text-center">
+        {{ knp_pagination_render(articles) }}
+            </div>
+        </div>
+    </section>
+{% endblock %}

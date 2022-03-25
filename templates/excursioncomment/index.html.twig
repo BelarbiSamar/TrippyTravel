@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Excursioncomment index{% endblock %}
+
+{% block body %}
+    <h1>Excursioncomment index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Pseudo</th>
+                <th>Email</th>
+                <th>Contenu</th>
+                <th>Actif</th>
+                <th>Rgpd</th>
+                <th>Created_at</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for excursioncomment in excursioncomments %}
+            <tr>
+                <td>{{ excursioncomment.id }}</td>
+                <td>{{ excursioncomment.pseudo }}</td>
+                <td>{{ excursioncomment.email }}</td>
+                <td>{{ excursioncomment.contenu }}</td>
+                <td>{{ excursioncomment.actif }}</td>
+                <td>{{ excursioncomment.rgpd }}</td>
+                <td>{{ excursioncomment.createdAt ? excursioncomment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_excursioncomment_show', {'id': excursioncomment.id}) }}">show</a>
+                    <a href="{{ path('app_excursioncomment_edit', {'id': excursioncomment.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_excursioncomment_new') }}">Create new</a>
+{% endblock %}

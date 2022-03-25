@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article{% endblock %}
+
+{% block body %}
+    <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="tour.html" class="nav-link">Tour</a></li>
+            <li class="nav-item"><a href="hotel.html" class="nav-link">Hotels</a></li>
+            <li class="nav-item active"><a href="blog.html" class="nav-link">Blog</a></li>
+            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            <li class="nav-item cta"><a href="contact.html" class="nav-link"><span>Add listing</span></a></li>
+        </ul>
+    </div>
+    </div>
+    </nav>
+    <!-- END nav -->
+
+    <div class="hero-wrap js-fullheight" style="background-image: url('{{ asset('front-office/images/bg_4.jpg') }}');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+                <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+                    <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span class="mr-2"><a href="blog.html">Blog</a></span> <span>Blog Single</span></p>
+                    <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Tips &amp; Articles</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="ftco-section ftco-degree-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ftco-animate">
+
+
+                    <h2 class="mb-3">{{ article.title }}</h2>
+
+
+                    <div class="col-lg-9">
+                        <div class="row">
+
+                            <div class="col-md-12 ftco-animate">
+                                <div class="single-slider owl-carousel">
+                                    {% for image in article.images %}
+                                    <div class="item">
+                                        <div class="hotel-img" style="background-image: url({{ asset('/uploads/'~image.name) }}); border-radius: 3%; "></div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                       <p>{{ article.content }}</p>
+                    </div>
+                    <div class="grix xs4 sm6 gutter-0 card">
+                        <div class="col-xs4 col-sm-12" >
+                            <h2 style="text-align: center;">Comments</h2><br>
+                            {% for comment in article.comments %}
+                                {% if comment.parent == null %}
+
+
+                                   <div style="padding-right: 4%;padding-left: 4% ;padding-top:O;padding-bottom: O ;margin:0 ; background-color: #e3e3e3; border-radius: 17px" >
+                                    <h3>written by {{comment.nickname}}</h3>
+                                    <p>Publié le {{comment.createdAt|date("d/m/Y H:i") }}</p>
+                                    <div>{{comment.content|raw}}</div>
+                                    <p><a href="#ajout-commentaire" data-reply data-id="{{comment.id}}" class="btn primary press">Reply</a></p>
+                                   </div>
+
+                                    {# On affiche les réponses #}
+                                    {% for reply in comment.replies %}
+                                        <div style="width: max-content;margin-top: 0 ;margin-left: 10% ;margin-bottom: 5%;padding:0 4% 0 4%; background-color: #fff3e5; border-radius: 13px"  >
+                                            <p>written by {{reply.nickname}} at {{reply.createdAt|date("d/m/Y H:i") }}</p>
+                                            <div>{{reply.content|raw}}</div>
+                                        </div>
+
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="col-xs4 col-sm-6" id="ajout-commentaire" >
+                            <h2>Add a comment</h2>
+                            {{ form(commentForm) }}
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4 sidebar ftco-animate">
+
+                    <div class="sidebar-box ftco-animate">
+                        <div class="categories">
+                            <h3>Categories</h3>
+
+                            {% for a in categories %}
+
+                                <li><a href="#">{{ a.name }}<span></span></a></li>
+                            {% else %}
+                                <li colspan="3">no records found</li>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section> <!-- .section -->
+    <script>
+        window.onload = () => {
+
+            // On met un écouteur d'évènements sur tous les boutons répondre
+            document.querySelectorAll("[data-reply]").forEach(element => {
+                element.addEventListener("click", function(){
+                     document.querySelector("#comments_parentid").value = this.dataset.id;
+                });
+            });
+        }
+
+    </script>
+{% endblock %}
+
+

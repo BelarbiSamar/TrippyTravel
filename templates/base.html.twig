@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <title>{% block title %} {% endblock %}</title>
+    {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -31,12 +33,14 @@
     <link rel="stylesheet" href="{{ asset('front-office/css/style.css') }}">
 
 
+
     <!-- inject:css:back -->
     <link rel="stylesheet" href="{{ asset('back-office/vendors/mdi/css/materialdesignicons.min.css') }}">
 
     
 
     
+
 </head>
 <body>
 
@@ -50,10 +54,11 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
 
+
 <li class="nav-item active"><a href="{{ path("home") }}" class="nav-link">Acceuil</a></li>
                 <li class="nav-item"><a href="{{ path("maisonshotes_index") }}" class="nav-link">Maison d'hotes</a></li>
 
-                <li class="nav-item"><a href="{{ path("excursion") }}" class="nav-link">Excursion</a></li>
+                <li class="nav-item"><a href="{{ path("excursion_index_front") }}" class="nav-link">Excursion</a></li>
                 <li class="nav-item"><a href="{{ path("hotel") }}" class="nav-link">Hotels</a></li>
                 <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Attractions</span> <span class="caret"></span></a>
@@ -62,7 +67,7 @@
                             <li><a href="{{ path("attraction_indexMap") }}" style="color:blue">Attractions - Map</a></li>
                         </ul>
                 </li>
-                <li class="nav-item"><a href="{{ path("blog") }}" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="{{ path("article_index_front") }}" class="nav-link">Blog</a></li>
 
                 {% if app.user %}
                 <li class="nav-item"><a href="{{ path("reclamation_new") }}" class="nav-link">Reclamation</a></li>
@@ -90,21 +95,26 @@
                         </div>
                         <a href="{{ path('profile') }}" class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile </a>
                         <a href="{{ path('reclamation_index_client') }}" class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Reclamations</a>
+                        <a href="{{ path('reservation_index_client') }}" class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Réservation excursion</a>
                         <a href="{{ path("app_logout") }}" class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Logout</a>
                     </div>
                 </li>
                 {% endif %}
+
             </ul>
         </div>
     </div>
 </nav>
+{{ flasher_render() }}
 <!-- END nav -->
 
 {% block body %}
 
 {% endblock %}
 
+
 {% block footer %}
+
 <footer class="ftco-footer ftco-bg-dark ftco-section">
     <div class="container">
         <div class="row mb-5">
@@ -167,8 +177,13 @@
         </div>
     </div>
 </footer>
+
 {% endblock %}
 
+
+
+
+<!-- loader -->
 
 <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
@@ -185,12 +200,20 @@
 <script src="{{ asset('front-office/js/aos.js') }}"></script>
 <script src="{{ asset('front-office/js/jquery.animateNumber.min.js') }}"></script>
 <script src="{{ asset('front-office/js/bootstrap-datepicker.js') }}"></script>
-<script src="{{ asset('front-office/js/jquery.timepicker.min.js') }}"></script>
 <script src="{{ asset('front-office/js/scrollax.min.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-<script src="{{ asset('front-office/js/google-map.js') }}"></script>
+
 <script src="{{ asset('front-office/js/main.js') }}"></script>
+<script src="{{ asset('front-office/js/script.js') }}"></script>
+
+
+{{ flasher_render() }}
+
+{% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
+{% block scripts %}{% endblock %}
 {% block js %}
 {% endblock %}
+
 </body>
 </html>

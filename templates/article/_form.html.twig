@@ -1,0 +1,43 @@
+{% extends 'baseBO.html.twig' %}
+{%  block body %}
+    <div class="main-panel">
+    <div class="content-wrapper">
+        <h1>Edit The Article</h1>
+    <div class="row">
+
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+
+            <div class="card-body">
+                <div class="col-md-13 text-right" >
+
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+
+    {{ form_widget(form) }}
+
+
+                {# Si la route est "annonces_edit on affiche les images #}
+                {% if app.request.attributes.get('_route') == 'article_edit' %}
+                    {% for image in article.images %}
+                        <div>
+                            <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="150">
+
+                            {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
+                            <a href="{{ path('delete_image', {id: image.id})}}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}"><i class="mdi mdi-delete"></i></a>
+
+
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                    <button class="btn btn-default"><a href="{{ path('article_index') }}"><span class="mdi mdi-arrow-left-bold-circle-outline mdi-48px"></span></a></button>
+                    <button class="btn btn-outline-primary btn-icon-text">
+                        <i class="{{ icon|default('mdi mdi-content-save') }}"></i>
+                    </button>
+{{ form_end(form) }}
+        </div>
+    </div>
+</div>
+    </div>
+    </div>
+    </div>
+{% endblock %}

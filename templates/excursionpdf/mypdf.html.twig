@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    {% include 'excursionpdf/css.twig.html' %}
+</head>
+<body>
+<!-- Define header and footer blocks before your content -->
+<header>
+    <table>
+
+        <tr>
+            <td></td>
+            <td>
+                Date: <strong>{{ date }}</strong>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                Client: {{ client_firstname }} {{ client_lastname  }}
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Réservation N°: <strong>{{ ID }}</strong>
+            </td>
+            <td>
+                {{ client_email }}
+            </td>
+        </tr>
+
+    </table>
+    <div class="logo-container">
+        <img class="logo"
+                src="{{ logo }}"
+        >
+    </div>
+</header>
+
+<footer>
+    Trippy travel
+    <div class="page-container">
+        Page
+        <span class="page"></span>
+    </div>
+</footer>
+
+<!-- Wrap the content of your PDF inside a main tag -->
+<main>
+    <table class="line-items-container">
+        <thead>
+        <tr>
+            <th class="heading-description">Libellé</th>
+            <th class="heading-price">Prix</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ reservation_lib }}</td>
+            <td class="right">{{ reservation_prix }}</td>
+        </tr>
+        </tbody>
+    </table>
+    {{ reservation_description|raw }}
+    {{ reservation_prog|raw }}
+</main>
+</body>
+</html>

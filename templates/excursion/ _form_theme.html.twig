@@ -1,0 +1,16 @@
+{% block _excursion_excursion_images_widget %}
+    <ul id="excursion-images-fields-list"
+        data-prototype="{{ form_widget(prototype)|e }}"
+        data-widget-tags="{{ '<li></li>'|e }}"
+        data-widget-counter="{{ value|length }}"
+    >
+        {% for key,excursionImageForm in addimage.children %}
+            {{ form_widget(excursionImageForm) }}
+
+        {% endfor %}
+    </ul>
+
+    <button type="button"
+            class="add-another-collection-widget"
+            data-list-selector="#excursion-images-fields-list">Add another excursion Image</button>
+{% endblock %}

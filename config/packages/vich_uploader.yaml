@@ -2,6 +2,20 @@ vich_uploader:
     db_driver: orm
     mappings:
 
+        images_directory:
+            uri_prefix:         '%app.path.images_directory%'
+            upload_destination: '%kernel.project_dir%/public%app.path.images_directory%'
+
+        excursion_images:
+            uri_prefix:         '%app.path.excursion_images%'
+            upload_destination: '%kernel.project_dir%/public%app.path.excursion_images%'
+
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+            namer:
+
+                service: Vich\UploaderBundle\Naming\UniqidNamer
         maisonhote_images:
             uri_prefix: '%app.path.maisonhote_images%'
             upload_destination: '%kernel.project_dir%/public%app.path.maisonhote_images%'
@@ -11,15 +25,12 @@ vich_uploader:
             namer: 'Vich\UploaderBundle\Naming\UniqidNamer'
             delete_on_remove: true
             delete_on_update: true
-
-
         product_images:
             uri_prefix:         '%app.path.product_images%'
             upload_destination: '%kernel.project_dir%/public%app.path.product_images%'
             namer: 'Vich\UploaderBundle\Naming\UniqidNamer'
             delete_on_remove: true
             delete_on_update: true 
-        
         hotel_images:
             uri_prefix:         '%app.path.hotel_images%'
             upload_destination: '%kernel.project_dir%/public%app.path.hotel_images%'

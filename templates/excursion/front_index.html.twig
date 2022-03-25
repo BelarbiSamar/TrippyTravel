@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Excursion{% endblock %}
+{% block body %}
+    <div class="hero-wrap js-fullheight" style="background-image: url({{ asset('front-office/images/bg_3.jpg') }});">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center"
+                 data-scrollax-parent="true">
+                <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+                    <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span
+                                class="mr-2"><a href="{{ path("excursion_index_front") }}">Acceuil</a></span> <span>Excursions</span>
+                    </p>
+                    <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
+                        Excursions</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="ftco-section ftco-degree-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 sidebar ftco-animate">
+                    <div class="sidebar-wrap bg-light ftco-animate">
+                        <h3 class="heading mb-4">Recherche</h3>
+                            <div class="fields">
+                                <div class="form-group">
+                                    <input type="text"  class="form-control" placeholder="Recherche" id="searchExcursion">
+                                </div>
+                                <div class="form-group">
+                                    <div class="select-wrap one-third">
+                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                        <select name="" id="dynamic_select_ville_excursion" class="form-control" placeholder="Keyword search">
+                                            <option value="">Select Ville</option>
+                                            {% for ville in villes %}
+                                                <option value="{{ path('menushowexcursionbyville', {ville: ville})  }}" >{{ ville }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="select-wrap one-third">
+                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                        <select name="" id="dynamic_select_cat_excursion" class="form-control" placeholder="Keyword search">
+                                            <option value="">Select Catégorie</option>
+                                            {% for categorie in categories %}
+                                                <option value="{{ path('menushowexcursionbycategorie', {id: categorie.id})  }}" >{{ categorie.libelle }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row" id="entitiesNavE">
+                        {% for excursion in excursions %}
+                            <div class="col-md-4 ftco-animate">
+                                <div class="destination">
+                                    {% for f in excursion.excursionimages %}
+                                    {% if loop.index == 1 %}
+                                    <a href="{{ path('excursion_show_front', {'id': excursion.id}) }}"
+                                       class="img img-2 d-flex justify-content-center align-items-center"
+                                       style="background-image: url({{ vich_uploader_asset(f, 'imageFile') }});">
+                                        {% endif %}
+                                        {% endfor %}
+                                        <div class="icon d-flex justify-content-center align-items-center">
+                                            <span class="icon-search2"></span>
+                                        </div>
+                                    </a>
+
+                                    <div class="text p-3">
+                                        <div class="d-flex">
+                                            <div class="one">
+                                                <h3><a href="#">{{ excursion.libelle }}</a></h3>
+                                            </div>
+                                            <div class="two">
+                                                <span class="price">{{ excursion.prix }}DT</span>
+                                            </div>
+                                        </div>
+                                        <p>{{ excursion.excursioncategorie.libelle }}</p>
+                                        <p class="days"><span>{{ excursion.duration }}</span></p>
+                                        <hr>
+                                        <p class="bottom-area d-flex">
+                                            <span><i class="icon-map-o"></i> {{ excursion.ville }}</span>
+                                            <span class="ml-auto"><a
+                                                        href="{{ path('excursion_show_front', {'id': excursion.id}) }}">Découvrir</a></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="center_div pagination">
+                        {{ knp_pagination_render(excursions) }}
+                    </div>
+                </div> <!-- .col-md-8 -->
+            </div>
+        </div>
+    </section> <!-- .section -->
+{% endblock %}

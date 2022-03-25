@@ -3,4 +3,57 @@
 {% block title %}BO Excursion{% endblock %}
 
 {% block body %}
+
+    <div class="main-panel">
+    <div class="content-wrapper">
+    <div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Excursion</h4>
+                <p class="card-description">
+                    <a class="btn btn-primary" href="{{ path('excursion_new') }}">Ajouter</a>
+                </p>
+                <div class="table-responsive pt-3">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Libelle</th>
+                            <th>Description</th>
+                            <th>Programme</th>
+                            <th>Ville</th>
+                            <th>Prix</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for excursion in excursions %}
+                            <tr>
+                                <td>{{ excursion.id }}</td>
+                                <td>{{ excursion.libelle }}</td>
+                                <td>{{ excursion.description }}</td>
+                                <td>{{ excursion.programme }}</td>
+                                <td>{{ excursion.ville }}</td>
+                                <td>{{ excursion.prix }}</td>
+                                <td>
+                                    <a class="btn btn-info" href="{{ path('excursion_show', {'id': excursion.id}) }}">Afficher</a>
+                                    <a class="btn btn-dark btn-icon-text" href="{{ path('excursion_edit', {'id': excursion.id}) }}">Modifier<i class="ti-file btn-icon-append"></i></a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="7">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
 {% endblock %}

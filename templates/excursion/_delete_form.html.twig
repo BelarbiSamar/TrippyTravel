@@ -1,0 +1,7 @@
+{#<form method="post" action="{{ path('excursion_delete', {'id': excursion.id}) }}" onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer cet élément?');">#}
+<form class="swa-confirm" method="post" action="{{ path('excursion_delete', {'id': excursion.id}) }}"
+      xmlns="http://www.w3.org/1999/html">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ excursion.id) }}">
+
+    <a type="button"  id="btn-ok"  class=" btn btn-outline-danger btn-icon-text"><i class="mdi mdi-delete"></i></a>
+</form>

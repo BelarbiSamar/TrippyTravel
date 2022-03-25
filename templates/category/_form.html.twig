@@ -1,0 +1,24 @@
+{% extends 'baseBO.html.twig' %}
+{%  block body %}
+<div class="main-panel">
+    <div class="content-wrapper">
+        <h1>Edit Category</h1>
+        <div class="row">
+
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+
+                    <div class="card-body">
+                        <div class="col-md-13 text-right" >
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+
+{{ form_end(form) }}
+                            <button class="btn btn-default"><a href="{{ path('category_index') }}"><span class="mdi mdi-arrow-left-bold-circle-outline mdi-48px"></span></a></button>
+
+                            <a href="{{ path('category_index') }}"><button class="btn btn-outline-primary btn-icon-text">
+                                <i class="{{ icon|default('mdi mdi-content-save') }}"></i>
+                                </button></a>
+                            {{ form_end(form) }}
+                            {% endblock %}
+

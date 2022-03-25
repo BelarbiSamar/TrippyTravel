@@ -1,0 +1,38 @@
+{% extends 'baseBO.html.twig' %}
+
+{% block title %}Edit Excursionreservation{% endblock %}
+
+{% block body %}
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="card-title">Excursion</h4>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <div class="btn-group">
+                                        <a href="{{ path('excursionreservation_index') }}"
+                                           class="btn btn-outline-light btn-icon-text"><i
+                                                    class="mdi mdi-arrow-left btn-icon-prepend"></i></a>
+                                        {{ include('excursionreservation/_delete_form.html.twig') }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="card-description">
+                                Modifier Excursion
+                            </p>
+
+                            {{ include('excursionreservation/_form.html.twig', {'button_label': 'Modifier','icon':'mdi mdi-grease-pencil'}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

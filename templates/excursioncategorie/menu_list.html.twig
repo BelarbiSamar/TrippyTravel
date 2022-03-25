@@ -1,0 +1,4 @@
+{% for categorie in categories %}
+    <a href="{{ path('menushowexcursionbycategorie', {id: categorie.id}) }}" class="dropdown-item"><i class="dropdown-item-icon mdi mdi-airballoon text-primary me-2"></i>
+        {{ categorie.libelle }} </a>
+{% endfor %}

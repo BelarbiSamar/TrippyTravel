@@ -1,0 +1,24 @@
+{% extends 'baseBO.html.twig' %}
+
+{% block title %}Hello ChartjsController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="example-wrapper">
+        {{ render_chart(chart, {'id': 'my-chart'})}}
+        <div class="row">
+           <div class="col-md-6">
+               {{ render_chart(chart2, {'id': 'my-chart2'})}}
+
+           </div>
+            <div class="col-md-6">
+                {{ render_chart(chart3, {'id': 'my-chart3'})}}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

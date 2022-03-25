@@ -1,0 +1,12 @@
+fm_elfinder:
+    instances:
+        default:
+            connector:
+                roots:
+                    uploads:
+                        driver: LocalFileSystem
+                        path: uploads/ckeditor
+                        show_hidden: false # Masque les fichiers cachés
+                        upload_allow: [ 'image/png', 'image/jpg', 'image/jpeg' ] # Fichiers autorisés
+                        upload_deny: [ 'all' ] # Fichiers interdits
+                        upload_max_size: 2M # Taille maximum
