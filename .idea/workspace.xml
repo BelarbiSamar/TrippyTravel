@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13c66ac1-5742-41ff-9236-30677a25baaf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/trippytravel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/trippytravel.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Paiement.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/public/Paiement.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Reservation.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/public/Reservation.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/excursion/6245fff5c7656978222691.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/excursion/6245fff5cf752438776708.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ApiExcursionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ApiExcursionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ExcursionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ExcursionController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Attraction.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Attraction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/baseBO.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/baseBO.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hotel/hotel.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hotel/hotel.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +227,7 @@
       <workItem from="1648129928039" duration="12290000" />
       <workItem from="1652545107185" duration="2511000" />
       <workItem from="1652617318448" duration="14000" />
-      <workItem from="1652617490367" duration="4748000" />
+      <workItem from="1652617490367" duration="7356000" />
     </task>
     <servers />
   </component>
