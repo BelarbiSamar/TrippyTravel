@@ -148,7 +148,7 @@ class ExcursionController extends AbstractController
         $excursions = $paginator->paginate(
             $all,
             $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
-            1 // Nombre de résultats par page
+            6 // Nombre de résultats par page
         );
         $categories = $this->getDoctrine()->getRepository(Excursioncategorie::class)->findAll();
         return $this->render('excursion/front_index.html.twig', [

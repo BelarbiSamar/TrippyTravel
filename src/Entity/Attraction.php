@@ -51,7 +51,7 @@ class Attraction
     private $prix;
 
     /**
-     * @ORM\ManyToOne(targetEntity=CategorieAttraction::class, inversedBy="attraction")
+     * @ORM\ManyToOne(targetEntity=CategorieAttraction::class, inversedBy="attractions")
      */
     private $id_categorie;
 

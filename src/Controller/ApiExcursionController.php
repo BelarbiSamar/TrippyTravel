@@ -174,8 +174,33 @@ class ApiExcursionController extends AbstractController
             ->getRepository(Excursion::class)
             ->find($request->get("id"));
 
-        $excursion->setDescription($request->get("description"));
-        $excursion->setLibelle($request->get("libelle"));
+        if ($request->get("description")){
+            $excursion->setDescription($request->get("description"));
+        }
+        if ($request->get("libelle")){
+
+            $excursion->setLibelle($request->get("libelle"));
+        }
+        if ($request->get("prix")){
+            $excursion->setPrix($request->get("prix"));
+        }
+        if ($request->get("programme")){
+            $excursion->setProgramme($request->get("programme"));
+        }
+        if ($request->get("duration")){
+            $excursion->setDuration($request->get("duration"));
+        }
+        if ($request->get("categorie")){
+            $excursion->setExcursioncategorie($request->get("categorie"));
+        }
+        if ($request->get("ville")){
+            $excursion->setVille($request->get("ville"));
+        }
+        //$excursion->setLibelle($request->get("libelle"));
+//        $excursion->setPrix($request->get("prix"));
+//        $excursion->setProgramme($request->get("programme"));
+//        $excursion->setDuration($request->get("duration"));
+//        $excursion->setExcursioncategorie($request->get("categorie"));
 
         $em->persist($excursion);
         $em->flush();

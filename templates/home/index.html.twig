@@ -17,33 +17,8 @@
 </div>
 {% endif %}
 {% endif %}
-                <div class="block-17 my-4">
-                    <form action="" method="post" class="d-block d-flex">
-                        <div class="fields d-block d-flex">
-                            <div class="textfield-search one-third">
-                                <input type="text" class="form-control" placeholder="Ex: food, service, hotel">
-                            </div>
-                            <div class="select-wrap one-third">
-                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                <select name="" id="" class="form-control" placeholder="Keyword search">
-                                    <option value="">Where</option>
-                                    <option value="">San Francisco USA</option>
-                                    <option value="">Berlin Germany</option>
-                                    <option value="">Lodon United Kingdom</option>
-                                    <option value="">Paris Italy</option>
-                                </select>
-                            </div>
-                        </div>
-                        <input type="submit" class="search-submit btn btn-primary" value="Search">
-                    </form>
-                </div>
-                <p>Or browse the highlights</p>
-                <p class="browse d-md-flex">
-                    <span class="d-flex justify-content-md-center align-items-md-center"><a href="#"><i class="flaticon-fork"></i>Restaurant</a></span>
-                    <span class="d-flex justify-content-md-center align-items-md-center"><a href="#"><i class="flaticon-hotel"></i>Hotel</a></span>
-                    <span class="d-flex justify-content-md-center align-items-md-center"><a href="#"><i class="flaticon-meeting-point"></i>Places</a></span>
-                    <span class="d-flex justify-content-md-center align-items-md-	center"><a href="#"><i class="flaticon-shopping-bag"></i>Shopping</a></span>
-                </p>
+
+
             </div>
         </div>
     </div>
@@ -56,8 +31,8 @@
                 <div class="media block-6 services d-block text-center">
                     <div class="d-flex justify-content-center"><div class="icon"><span class="flaticon-guarantee"></span></div></div>
                     <div class="media-body p-2 mt-2">
-                        <h3 class="heading mb-3">Best Price Guarantee</h3>
-                        <p>A small river named Duden flows by their place and supplies.</p>
+                        <h3 class="heading mb-3">Garantie du meilleur prix</h3>
+                        <p>Notre Meilleur prix garanti vous assure d’obtenir une réservation au prix le plus intéressant.</p>
                     </div>
                 </div>
             </div>
@@ -65,8 +40,9 @@
                 <div class="media block-6 services d-block text-center">
                     <div class="d-flex justify-content-center"><div class="icon"><span class="flaticon-like"></span></div></div>
                     <div class="media-body p-2 mt-2">
-                        <h3 class="heading mb-3">Travellers Love Us</h3>
-                        <p>A small river named Duden flows by their place and supplies.</p>
+                        <h3 class="heading mb-3">
+                            Les voyageurs nous aiment</h3>
+                        <p>Une petite rivière nommée Duden coule par leur lieu et les approvisionne.</p>
                     </div>
                 </div>
             </div>
@@ -74,8 +50,8 @@
                 <div class="media block-6 services d-block text-center">
                     <div class="d-flex justify-content-center"><div class="icon"><span class="flaticon-detective"></span></div></div>
                     <div class="media-body p-2 mt-2">
-                        <h3 class="heading mb-3">Best Travel Agent</h3>
-                        <p>A small river named Duden flows by their place and supplies.</p>
+                        <h3 class="heading mb-3">Meilleur agent de voyage</h3>
+                        <p>On possède les meilleurs agents de voyage.</p>
                     </div>
                 </div>
             </div>
@@ -83,8 +59,8 @@
                 <div class="media block-6 services d-block text-center">
                     <div class="d-flex justify-content-center"><div class="icon"><span class="flaticon-support"></span></div></div>
                     <div class="media-body p-2 mt-2">
-                        <h3 class="heading mb-3">Our Dedicated Support</h3>
-                        <p>A small river named Duden flows by their place and supplies.</p>
+                        <h3 class="heading mb-3">Notre assistance dédiée</h3>
+                        <p>un représentant d'assistance client dédié</p>
                     </div>
                 </div>
             </div>
@@ -96,91 +72,36 @@
     <div class="container">
         <div class="row justify-content-start mb-5 pb-3">
             <div class="col-md-7 heading-section ftco-animate">
-                <span class="subheading">Featured</span>
-                <h2 class="mb-4"><strong>Featured</strong> Destination</h2>
+                <span class="subheading">En vedette</span>
+                <h2 class="mb-4"><strong>Excursion </strong>en vedette</h2>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="destination-slider owl-carousel ftco-animate">
+                    {% for excursion in excursions %}
                     <div class="item">
                         <div class="destination">
-                            <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(front-office/images/destination-1.jpg);">
+
+                            {% for f in excursion.excursionimages %}
+
+                            {% if loop.index == 1 %}
+                            <a href="{{ path('excursion_show_front', {'id': excursion.id}) }}"
+                               class="img img-2 d-flex justify-content-center align-items-center"
+                               style="background-image: url({{ vich_uploader_asset(f, 'imageFile') }});">
+                                {% endif %}
+                                {% endfor %}
                                 <div class="icon d-flex justify-content-center align-items-center">
                                     <span class="icon-search2"></span>
                                 </div>
                             </a>
                             <div class="text p-3">
-                                <h3><a href="#">Paris, Italy</a></h3>
-                                <span class="listing">15 Listing</span>
+                                <h3><a href="#">{{ excursion.libelle }}</a></h3>
+                                <span class="listing">{{ excursion.prix }}DT</span>
                             </div>
                         </div>
                     </div>
-                    <div class="item">
-                        <div class="destination">
-                            <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(front-office/images/destination-2.jpg);">
-                                <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="icon-search2"></span>
-                                </div>
-                            </a>
-                            <div class="text p-3">
-                                <h3><a href="#">San Francisco, USA</a></h3>
-                                <span class="listing">20 Listing</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="destination">
-                            <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(front-office/images/destination-3.jpg);">
-                                <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="icon-search2"></span>
-                                </div>
-                            </a>
-                            <div class="text p-3">
-                                <h3><a href="#">Lodon, UK</a></h3>
-                                <span class="listing">10 Listing</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="destination">
-                            <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(front-office/images/destination-4.jpg);">
-                                <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="icon-search2"></span>
-                                </div>
-                            </a>
-                            <div class="text p-3">
-                                <h3><a href="#">Lion, Singapore</a></h3>
-                                <span class="listing">3 Listing</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="destination">
-                            <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(front-office/images/destination-5.jpg);">
-                                <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="icon-search2"></span>
-                                </div>
-                            </a>
-                            <div class="text p-3">
-                                <h3><a href="#">Australia</a></h3>
-                                <span class="listing">3 Listing</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="destination">
-                            <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(front-office/images/destination-6.jpg);">
-                                <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="icon-search2"></span>
-                                </div>
-                            </a>
-                            <div class="text p-3">
-                                <h3><a href="#">Paris, Italy</a></h3>
-                                <span class="listing">3 Listing</span>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
