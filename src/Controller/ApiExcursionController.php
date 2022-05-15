@@ -3,12 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Excursioncategorie;
-use Doctrine\ORM\EntityManagerInterface;
+//use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\ExcursionRepository;
+//use App\Repository\ExcursionRepository;
 use Symfony\Component\Serializer\SerializerInterface;
 use App\Entity\Excursion;
 /**new ads**/
@@ -22,42 +22,47 @@ use Symfony\Component\Validator\Constraints\Json;
 class ApiExcursionController extends AbstractController
 {
     /**
-     * @Route("/allexcursionapi", name="api_excursion")
+     * @Route("/allexcursionapi")
+     * @Method("GET")
      */
     public function index()
     {
+        try {
         $array1=[];
         $excursions = $this->getDoctrine()->getManager()->getRepository(Excursion::class)->findAll();
         foreach ($excursions as $key => $value) {
+            $array["id"] =$value->getId();
             if ($value->getExcursionimages()[0]) {
                 $array["image"] = "http://127.0.0.1:8000/uploads/images/excursion/".$value->getExcursionimages()[0]->getImageName();
             } else {
                 $array["image"] = "http://localhost:8000/front-office/images/bg_4.jpg";
             }
-          
-            $array["id"] = $value->getId();
             $array["libelle"] = $value->getLibelle();
-            $array["description"] = $value->getDescription();
-            $array["programme"] = $value->getProgramme();
+            $array["description"] = preg_replace( "/\n\s+/", "\n", rtrim(html_entity_decode(strip_tags($value->getDescription()))) );
+            $array["programme"] = preg_replace( "/\n\s+/", "\n", rtrim(html_entity_decode(strip_tags($value->getProgramme()))) );
+
             $array["ville"] = $value->getVille();
             $array["prix"] = $value->getPrix();
             $array["duration"] = $value->getDuration();
             $array["localisation"] = $value->getLocalisation();
-            $array["comments"] = $value->getExcursioncomments();
-            $array["excursioncategorie_id"] = 0;
+            $array["comments"] = "";
+            $array["excursioncategorie_id"] = $value->getExcursioncategorie()->getId();
             $array1[]=$array;
         }
-    
         $normalizer = new ObjectNormalizer();
         $normalizer->setCircularReferenceLimit(2);
 // Add Circular reference handler
         $normalizer->setCircularReferenceHandler(function ($object) {
             return $object->getId();
         });
+
         $normalizers = array($normalizer);
         $serializer = new Serializer($normalizers);
         $formatted = $serializer->normalize($array1);
         return new JsonResponse($formatted);
+        }catch (\Exception $exception){
+           return new Response($exception->getMessage());
+        }
     }
 //    /**
 //     * @Route("/api/excursion/new", name="api_excursion_new")
@@ -99,7 +104,7 @@ class ApiExcursionController extends AbstractController
 
     /******************Ajouter Excursion*****************************************/
     /**
-     * @Route("/addExcursionapi", name="add_excursion")
+     * @Route("/addExcursionapi")
      * @Method("POST")
      */
 
@@ -139,7 +144,7 @@ class ApiExcursionController extends AbstractController
     /******************Supprimer Excursion*****************************************/
 
     /**
-     * @Route("/deleteExcursionapi", name="delete_excursiontionapi")
+     * @Route("/deleteExcursionapi")
      * @Method("DELETE")
      */
 
