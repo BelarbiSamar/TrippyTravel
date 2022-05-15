@@ -6,7 +6,6 @@
 parameters:
     images_directory: '%kernel.project_dir%/public/uploads'
     app.path.excursion_images: /uploads/images/excursion
-
     app.path.maisonhote_images: /uploads/images/maisonhotes
     app.path.attraction_images: /uploads/images/attraction
     app.path.product_images: /uploads/images/products

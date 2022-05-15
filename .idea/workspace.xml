@@ -1,36 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="13c66ac1-5742-41ff-9236-30677a25baaf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/translation.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/translation.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20220223014331.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20220224201306.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20220224222711.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20220224223315.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20220225000209.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/back-office/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/back-office/js/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ExcursionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ExcursionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ExcursioncategorieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ExcursioncategorieController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ExcursionreservationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ExcursionreservationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Excursion.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Excursion.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Excursionreservation.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Excursionreservation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ExcursionRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ExcursionRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/baseBO.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/baseBO.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/excursion/front_index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/excursion/front_index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/excursion/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/excursion/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/excursion/show_front.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/excursion/show_front.html.twig" afterDir="false" />
-    </list>
+    <list default="true" id="13c66ac1-5742-41ff-9236-30677a25baaf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -198,6 +175,19 @@
       <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
       <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
       <path value="$PROJECT_DIR$/vendor/stripe/stripe-php" />
+      <path value="$PROJECT_DIR$/vendor/symfony/google-mailer" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
+      <path value="$PROJECT_DIR$/vendor/symfony/swiftmailer-bundle" />
+      <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
+      <path value="$PROJECT_DIR$/vendor/nelmio/cors-bundle" />
+      <path value="$PROJECT_DIR$/vendor/fig/link-util" />
+      <path value="$PROJECT_DIR$/vendor/php-flasher/flasher-notyf" />
+      <path value="$PROJECT_DIR$/vendor/php-flasher/flasher-notyf-symfony" />
+      <path value="$PROJECT_DIR$/vendor/symfonycasts/reset-password-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfonycasts/verify-email-bundle" />
+      <path value="$PROJECT_DIR$/vendor/api-platform/core" />
+      <path value="$PROJECT_DIR$/vendor/willdurand/negotiation" />
     </include_path>
   </component>
   <component name="ProjectId" id="26poVr1t3SY3M8B54xp2Ml6WuD2" />
@@ -229,6 +219,9 @@
       <option name="presentableId" value="Default" />
       <updated>1648129917611</updated>
       <workItem from="1648129928039" duration="12290000" />
+      <workItem from="1652545107185" duration="2511000" />
+      <workItem from="1652617318448" duration="14000" />
+      <workItem from="1652617490367" duration="7564000" />
     </task>
     <servers />
   </component>
