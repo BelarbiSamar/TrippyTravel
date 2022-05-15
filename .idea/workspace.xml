@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="13c66ac1-5742-41ff-9236-30677a25baaf" name="Changes" comment="" />
+    <list default="true" id="13c66ac1-5742-41ff-9236-30677a25baaf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/back-office/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/back-office/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/MaisonshotesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MaisonshotesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/baseBO.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/baseBO.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/excursion/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/excursion/_delete_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/excursion/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/excursion/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/maisonshotes/admin_index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/maisonshotes/admin_index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/maisonshotes/indexfront.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/maisonshotes/indexfront.html.twig" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -221,7 +230,7 @@
       <workItem from="1648129928039" duration="12290000" />
       <workItem from="1652545107185" duration="2511000" />
       <workItem from="1652617318448" duration="14000" />
-      <workItem from="1652617490367" duration="7564000" />
+      <workItem from="1652617490367" duration="16205000" />
     </task>
     <servers />
   </component>

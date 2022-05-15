@@ -45,25 +45,8 @@ $(document).on('click', '.btn-collection-delete', function(e) {
     e.preventDefault(); // évite qu'un # apparaisse dans l'URL
     return false;
 });
-$(document).ready(function() {
-    $('#btn-ok').click(function(e) {
-        let $form = $(this).closest('form');
-        Swal.fire({
-            title: 'Êtes-vous sûr?',
-            text: "Vous ne pourrez pas revenir en arrière !",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Oui, supprimez-le !',
-            cancelButtonText: "Annuler"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $form.submit();
-            }
-        })
-    });
-});
+
+
 // $(document).on('keyup', '.search', function() {
 //     var searchVal = $(this).val();
 //     $.ajax({
@@ -81,7 +64,7 @@ $(document).ready(function() {
 // });
 jQuery(document).ready(function() {
     var searchRequest = null;
-    $("#search").keyup(function() {
+    $("#searchexc").keyup(function() {
         var minlength = 0;
         var that = this;
         var value = $(this).val();
@@ -164,4 +147,22 @@ function comparer(index) {
 
 function getCellValue(row, index) {
     return $(row).children('td').eq(index).text();
+}
+function deletef(val){
+    let $form = $(val).closest('form');
+    Swal.fire({
+        title: 'Êtes-vous sûr?',
+        text: "Vous ne pourrez pas revenir en arrière !",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Oui, supprimez-le !',
+        cancelButtonText: "Annuler"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $form.submit();
+        }
+    })
+
 }

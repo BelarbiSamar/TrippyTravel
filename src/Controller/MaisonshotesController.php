@@ -104,14 +104,18 @@ class MaisonshotesController extends AbstractController
                 $result['maisonshote '] = $this->getRealEntities($maisonshote );
             }
         }else{
-            $result['maisonshote '] = $this->getRealEntities($repository->findAll());
+            $result['maisonshote'] = $this->getRealEntities($repository->findAll());
         }
         return new Response(json_encode($result));
     }
 
-    public function getRealEntities($maisonshote ){
-        foreach ($maisonshote  as $maisonshote ){
-            $realEntities[$maisonshote ->getId()] = [$maisonshote->getLibelle(),$maisonshote->getCapacite(),$maisonshote->getLocalisation(), $maisonshote->getProprietaire(), $maisonshote->getPrix(), "back-office/images/".$maisonshote->getMaisonhotesimages()];
+    public function getRealEntities($maisonshotes){
+        foreach ($maisonshotes  as $maisonshote ){
+            $img="";
+            if ($maisonshote->getMaisonhotesimages()[0]){
+                $img="/uploads/images/maisonhotes/".$maisonshote->getMaisonhotesimages()[0]->getImageName();
+            }
+            $realEntities[$maisonshote->getId()] = [$maisonshote->getLibelle(),$maisonshote->getCapacite(),$maisonshote->getLocalisation(), $maisonshote->getProprietaire(), $maisonshote->getPrix(), $img];
         }
         return $realEntities;
     }
