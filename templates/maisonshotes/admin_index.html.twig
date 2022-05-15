@@ -29,13 +29,7 @@
             </div>
             <!-- /input-group -->
         </div>
-        <ul class="nav" id="side-menu">
-            <li>
 
-                <ul class="nav nav-second-level" id="entitiesNav">
-                </ul>
-            </li>
-        </ul><br><br><br><br>
 
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
@@ -43,7 +37,7 @@
             jQuery(document).ready(function() {
                 var searchRequest = null;
                 $("#search").keyup(function() {
-                    var minlength = 3;
+                    var minlength = 0;
                     var that = this;
                     var value = $(this).val();
                     var entitySelector = $("#entitiesNav").html('');
@@ -52,7 +46,7 @@
                             searchRequest.abort();
                         searchRequest = $.ajax({
                             type: "GET",
-                            url: "{{ path('ajax_search') }}",
+                            url: "{{ path('ajax_search_searchmaisonhote') }}",
                             data: {
                                 'q' : value
                             },
@@ -64,12 +58,21 @@
                                     $.each(result, function(key, arr) {
                                         $.each(arr, function(id, value) {
 
-                                            if (id != 'error') {
-                                                entitySelector.append('<li> Nom:<h1  style="color:grey !important;"class="headline">'+value[0]+'</h1> Categorie : <p  style="color:black !important;" class="para para-light py-3">'+value[1]+' </p> Description :<p  style="color:black !important;" class="para para-light py-3">'+value[2]+' </p> Description :<p  style="color:black !important;" class="para para-light py-3">'+value[3]+' </p> Description :<p  style="color:black !important;" class="para para-light py-3">'+value[4]+' </p> </li>');
-                                            }
-
-                                            else {
-                                                entitySelector.append('<li style="color:red;">'+value+'</li>');
+                                            // if (id != 'error') {
+                                            //     entitySelector.append('<li> Nom:<h1  style="color:grey !important;"class="headline">'+value[0]+'</h1> Categorie : <p  style="color:black !important;" class="para para-light py-3">'+value[1]+' </p> Description :<p  style="color:black !important;" class="para para-light py-3">'+value[2]+' </p> Description :<p  style="color:black !important;" class="para para-light py-3">'+value[3]+' </p> Description :<p  style="color:black !important;" class="para para-light py-3">'+value[4]+' </p> </li>');
+                                            // }
+                                            //
+                                            // else {
+                                            //     entitySelector.append('<li style="color:red;">'+value+'</li>');
+                                            // }
+                                            if (id !== 'error') {
+                                                console.log(value[1]);
+                                                var tr = '<tr><td>' + value[0] + '</td><td>' + value[1] + '</td><td>' + value[2] + '</td><td>' + value[3] + '</td>><td>' + value[4] + '</td>'
+                                                tr += '<td></td>'
+                                                tr += "</tr>"
+                                                entitySelector.append(tr);
+                                            } else {
+                                                entitySelector.append('<tr><td>' + value + '</td></tr>');
                                             }
 
                                         });
@@ -97,7 +100,7 @@
             <th>actions</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="entitiesNav">
         {% for maisonshote in maisonshotes %}
             <tr>
 
