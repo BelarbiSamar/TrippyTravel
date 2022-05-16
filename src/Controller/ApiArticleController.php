@@ -139,7 +139,7 @@ class ApiArticleController extends AbstractController
 
     /******************Modifier Excursion*****************************************/
     /**
-     * @Route("/updateArticleapi", name="update_articleapi")
+     * @Route("/updateArticleapi")
      * @Method("PUT")
      */
     public function modifierArticleAction(Request $request) {

@@ -12,6 +12,7 @@ use App\Form\ExcursionimageType;
 use App\Form\ExcursionType;
 use App\Repository\ExcursionRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Flasher\Notyf\Prime\NotyfFactory;
 use Flasher\Prime\FlasherInterface;
 use Flasher\SweetAlert\Prime\SweetAlertFactory;
 use Knp\Component\Pager\PaginatorInterface;
@@ -51,7 +52,7 @@ class ExcursionController extends AbstractController
     /**
      * @Route("admin-dashboard/excursion/new", name="excursion_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager, FlasherInterface $flasher): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, NotyfFactory $flasher): Response
     {
         $excursion = new Excursion();
         $form = $this->createForm(ExcursionType::class, $excursion);
@@ -100,7 +101,7 @@ class ExcursionController extends AbstractController
     /**
      * @Route("admin-dashboard/excursion/{id}/edit", name="excursion_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Excursion $excursion, EntityManagerInterface $entityManager, FlasherInterface $flasher): Response
+    public function edit(Request $request, Excursion $excursion, EntityManagerInterface $entityManager, NotyfFactory $flasher): Response
     {
         $form = $this->createForm(ExcursionType::class, $excursion);
         $form->handleRequest($request);
@@ -161,7 +162,7 @@ class ExcursionController extends AbstractController
      /**
      * @Route("excursion/{id}", name="excursion_show_front", methods={"GET","POST"})
      */
-    public function show_front(DompdfController $Dompdf, EntityManagerInterface $entityManager, Excursion $excursion, Request $request, FlasherInterface $flasher): Response
+    public function show_front(DompdfController $Dompdf, EntityManagerInterface $entityManager, Excursion $excursion, Request $request, NotyfFactory $flasher): Response
     {
         //comment
         $commentaires = $this->getDoctrine()->getRepository(Excursioncomment::class)->findBy([
